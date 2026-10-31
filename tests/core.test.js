@@ -2,16 +2,28 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  MODELS, PLANS, PROFILE, WINDOW, CRED_TIERS, CRED_MAX,
-  PICKS, BALANCED, RANKED, SCORED,
-  reqMonth, reqOf, usd, usdReq, int
+  MODELS,
+  PLANS,
+  PROFILE,
+  WINDOW,
+  CRED_TIERS,
+  CRED_MAX,
+  PICKS,
+  BALANCED,
+  RANKED,
+  SCORED,
+  reqMonth,
+  reqOf,
+  usd,
+  usdReq,
+  int
 } from "../src/core.js";
 
 const byName = name => MODELS.find(m => m.n === name);
 
 test("dataset: 95 modelos (catálogo 97 menos Jev headless), com as contagens da doc", () => {
   assert.equal(MODELS.length, 95);
-  assert.equal(MODELS.filter(m => m.onGoat).length, 69);  // GOAT 71 − 2 Jev
+  assert.equal(MODELS.filter(m => m.onGoat).length, 69); // GOAT 71 − 2 Jev
   assert.equal(MODELS.filter(m => m.isDeal).length, 4);
   assert.equal(MODELS.filter(m => m.isFree).length, 4);
   assert.equal(MODELS.filter(m => m.cred != null && m.onGoat && !m.isFree).length, 65);
@@ -83,8 +95,8 @@ test("variantes Contributor e o Ling 3.1 Flash 1019 herdam o IQ do base", () => 
 test("LongCat 2.0 passou a ser pago, com teto negociado de $50", () => {
   const lc = byName("LongCat 2.0");
   assert.equal(lc.isFree, false);
-  assert.equal(lc.inp, 0.30);
-  assert.equal(lc.out, 1.20);
+  assert.equal(lc.inp, 0.3);
+  assert.equal(lc.out, 1.2);
   assert.equal(lc.cr, 0.006);
   assert.equal(lc.iq, 19.1);
   assert.equal(lc.cred, 50);
@@ -100,14 +112,17 @@ test("equilíbrio: 0–100, topo no Contributor, zera nas duas pontas da escala 
   assert.ok(BALANCED[0].balance > 80);
   assert.ok(BALANCED[0].balance < 100);
   const zeros = BALANCED.filter(m => m.balance === 0);
-  assert.deepEqual(
-    zeros.map(m => m.n).sort(),
-    ["Claude Fable 5", "Claude Haiku 4.5", "GPT-6 Astra"]
-  );
+  assert.deepEqual(zeros.map(m => m.n).sort(), ["Claude Fable 5", "Claude Haiku 4.5", "GPT-6 Astra"]);
   const maisCaro = Math.max(...SCORED.map(m => m.costReq));
   const iqMin = Math.min(...SCORED.map(m => m.iq));
-  assert.ok(zeros.some(m => m.costReq === maisCaro), "zera no custo máximo");
-  assert.ok(zeros.some(m => m.iq === iqMin), "zera no IQ mínimo");
+  assert.ok(
+    zeros.some(m => m.costReq === maisCaro),
+    "zera no custo máximo"
+  );
+  assert.ok(
+    zeros.some(m => m.iq === iqMin),
+    "zera no IQ mínimo"
+  );
 });
 
 test("equilíbrio exige as duas pontas: barato e fraco cai em relação ao ratio puro", () => {
@@ -122,7 +137,7 @@ test("request por mês: publicado quando existe, estimado quando não", () => {
   const pub = reqMonth(byName("DeepSeek V4.1 Flash"), "goat");
   assert.deepEqual(pub, { n: 256000, est: false });
 
-  const est = reqMonth(byName("GLM-5.1"), "goat");   // fora das tabelas de req
+  const est = reqMonth(byName("GLM-5.1"), "goat"); // fora das tabelas de req
   assert.equal(est.est, true);
   assert.ok(est.n > 0);
 
@@ -131,7 +146,7 @@ test("request por mês: publicado quando existe, estimado quando não", () => {
 });
 
 test("janelas de 5h e semana são 20% e 50% do teto mensal", () => {
-  assert.deepEqual(WINDOW, { h5: 0.20, week: 0.50 });
+  assert.deepEqual(WINDOW, { h5: 0.2, week: 0.5 });
   const goat = PLANS.find(p => p.key === "goat");
   const flash = reqOf(byName("DeepSeek V4.1 Flash"), goat);
   assert.equal(flash.n, 256000);
@@ -190,7 +205,7 @@ const OFICIAL = {
   "Grok 4.7": [144, 360, 719],
   "Gemini 3.7 Flash": [784, 1960, 3920],
   "GLM-5.2 Fast": [138, 346, 691],
-  "Inkling": [396, 989, 1980],
+  Inkling: [396, 989, 1980],
   "Inkling Small": [709, 1770, 3550],
   "MiMo V2.6 Pro": [5700, 14200, 28500],
   "MiMo V2.6 Flash": [13000, 32500, 64900],
@@ -207,10 +222,16 @@ test("req/mês publicado bate com a doc, e as janelas derivadas caem em 20% e 50
     const m = byName(nome);
     assert.ok(m, `modelo ausente: ${nome}`);
     assert.equal(m.req.goat, mes, `${nome}: req/mês`);
-    const r = reqOf(m, PLANS.find(p => p.key === "goat"));
+    const r = reqOf(
+      m,
+      PLANS.find(p => p.key === "goat")
+    );
     assert.equal(r.n, mes, `${nome}: janela mensal`);
-    assert.ok(Math.abs(r.n * WINDOW.h5 / mes - 0.20) < 0.005, `${nome}: 5h = ${(h5 / mes * 100).toFixed(2)}%`);
-    assert.ok(Math.abs(r.n * WINDOW.week / mes - 0.50) < 0.005, `${nome}: semana = ${(semana / mes * 100).toFixed(2)}%`);
+    assert.ok(Math.abs((r.n * WINDOW.h5) / mes - 0.2) < 0.005, `${nome}: 5h = ${((h5 / mes) * 100).toFixed(2)}%`);
+    assert.ok(
+      Math.abs((r.n * WINDOW.week) / mes - 0.5) < 0.005,
+      `${nome}: semana = ${((semana / mes) * 100).toFixed(2)}%`
+    );
   }
   assert.equal(Object.keys(OFICIAL).length, 57, "trincas oficiais conferidas");
 });
@@ -224,7 +245,7 @@ test("janela semanal é teto rolante, não taxa: semana × 4 não dá o mês", (
   const glm53 = byName("GLM-5.3");
   assert.equal(glm53.cred, 20);
   const r = reqOf(glm53, goat);
-  assert.equal(Math.round(glm53.cred * WINDOW.week / glm53.costReq), Math.round(r.n * WINDOW.week));
+  assert.equal(Math.round((glm53.cred * WINDOW.week) / glm53.costReq), Math.round(r.n * WINDOW.week));
 });
 
 test("Max 20× entrega o dobro do Max 10×", () => {
@@ -238,11 +259,15 @@ test("tetos de crédito: faixas e extremos", () => {
   assert.deepEqual(CRED_TIERS, [100, 70, 60, 50, 47, 40, 33, 20, 10]);
   assert.equal(CRED_MAX, 100);
   assert.deepEqual(
-    MODELS.filter(m => m.cred === 100).map(m => m.n).sort(),
+    MODELS.filter(m => m.cred === 100)
+      .map(m => m.n)
+      .sort(),
     ["DeepSeek V4.1 Flash", "GLM-5.3 Flash", "Ling 3.1 Flash"].sort()
   );
   assert.deepEqual(
-    MODELS.filter(m => m.cred === 70).map(m => m.n).sort(),
+    MODELS.filter(m => m.cred === 70)
+      .map(m => m.n)
+      .sort(),
     ["GLM-5.2", "Qwen 3.8 27B", "Tencent Hy3"].sort()
   );
   assert.equal(byName("GPT-5.6 Sol").cred, 20);

@@ -16,13 +16,13 @@ The page is available in **Portuguese and English** (toggle in the header), ship
 
 ## How the numbers are computed
 
-| Metric | Formula |
-|---|---|
-| Cost per request | `800 input + 50,000 cache read + 160 output` (the agent profile documented by Command Code) |
-| Cost per 1M (blend) | the same profile, normalised to 1M tokens |
-| Value index | `Intelligence ÷ cost per 1M` |
-| Balance (0–100) | geometric mean of intelligence (linear, 15.4→57.6) and cheapness (log), both normalised — demands both ends; the top score is ~88, not 100, because the IQ max is now Opus 5.5 |
-| 5h / weekly windows | 20% and 50% of the model's monthly ceiling (proportions confirmed by the official numbers) |
+| Metric              | Formula                                                                                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Cost per request    | `800 input + 50,000 cache read + 160 output` (the agent profile documented by Command Code)                                                                                    |
+| Cost per 1M (blend) | the same profile, normalised to 1M tokens                                                                                                                                      |
+| Value index         | `Intelligence ÷ cost per 1M`                                                                                                                                                   |
+| Balance (0–100)     | geometric mean of intelligence (linear, 15.4→57.6) and cheapness (log), both normalised — demands both ends; the top score is ~88, not 100, because the IQ max is now Opus 5.5 |
+| 5h / weekly windows | 20% and 50% of the model's monthly ceiling (proportions confirmed by the official numbers)                                                                                     |
 
 Intelligence is the **unified catalog scale** (31 Oct 2026). Contributor variants and Ling 3.1 Flash 1019 inherit the base model's score. Models listed as "not yet scored" stay out of value and balance.
 
@@ -52,18 +52,22 @@ folders exist, so switching language also switches which fragment is fetched.
 
 ## Development (TDD)
 
-Tests run on Node's built-in runner — no dependencies to install:
-
 ```bash
-npm test          # dataset, metrics, i18n, partials, build, i18n coverage
+npm install       # eslint, prettier, husky, faker
+npm test          # dataset, metrics, faker, i18n, partials, build, coverage
+npm run lint      # ESLint
+npm run format    # Prettier --write
 npm run build     # writes partials/ (95 models × 2 languages)
 npm run dev       # build + static server on :8000
 ```
+
+The pre-commit hook (husky + lint-staged) formats staged files, runs ESLint and then the full test suite, including property tests generated with `@faker-js/faker`. GitHub Actions runs `format:check`, `lint`, `test` and `build` on every push and pull request.
 
 The suite is the guard rail for the analysis itself:
 
 - **dataset** — counts and spot values against the official table (95 models, 69 on GOAT, 4 deals, 4 free)
 - **metrics** — cost per request, blend, balance bounds, ceiling bands ($10–$100), window proportions, Max 20× doubling
+- **faker** — synthetic models asserting the 800/50k/160 profile, free-model zeros, 20%/50% windows and 0–100 balance
 - **i18n** — key parity between languages, identical HTML tags and `{placeholders}`, interpolation, fallback
 - **partials** — unique slugs, language switching, peak/deal pricing, no untranslated key leaking into HTML
 - **coverage** — every dictionary key is used somewhere, and every `data-i18n` in the HTML exists in the dictionary

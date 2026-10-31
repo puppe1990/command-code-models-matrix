@@ -6,11 +6,13 @@
 import { usd, usdReq, int, reqMonth, WINDOW } from "./core.js";
 import { t } from "./i18n/index.js";
 
-export const slugify = nome => nome
-  .toLowerCase()
-  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-  .replace(/[^a-z0-9]+/g, "-")
-  .replace(/^-+|-+$/g, "");
+export const slugify = nome =>
+  nome
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export const partialPath = (m, lang) => `/partials/${lang}/${slugify(m.n)}.html`;
 
@@ -38,17 +40,15 @@ export function modelPartial(m, lang) {
 
   const janelas = m.isFree
     ? `<p class="text-xs text-emerald-300">${tr("detail.freeQuota")}</p>`
-    : (r
+    : r
       ? `<div class="grid grid-cols-3 gap-2">
            ${celula(tr, tr("detail.window5h"), int(r.n * WINDOW.h5) + " " + tr("detail.requests"))}
            ${celula(tr, tr("detail.windowWeek"), int(r.n * WINDOW.week) + " " + tr("detail.requests"))}
            ${celula(tr, tr("detail.windowMonth"), int(r.n) + " " + tr("detail.requests"), r.est ? tr("ui.approx") : "")}
          </div>`
-      : `<p class="text-xs text-slate-500">${tr("detail.ceilingNone")}</p>`);
+      : `<p class="text-xs text-slate-500">${tr("detail.ceilingNone")}</p>`;
 
-  const teto = m.isFree
-    ? tr("detail.freeQuota")
-    : (m.cred != null ? `$${m.cred}` : tr("detail.ceilingNone"));
+  const teto = m.isFree ? tr("detail.freeQuota") : m.cred != null ? `$${m.cred}` : tr("detail.ceilingNone");
 
   return `
 <div class="space-y-4">

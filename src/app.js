@@ -23,27 +23,36 @@ export function applyTheme(theme) {
 
 export function initTheme() {
   let saved = null;
-  try { saved = localStorage.getItem(THEME_KEY); } catch (e) { /* sem storage */ }
+  try {
+    saved = localStorage.getItem(THEME_KEY);
+  } catch (e) {
+    /* sem storage */
+  }
   applyTheme(saved === "light" ? "light" : "dark");
   q("#btnTheme").onclick = () => {
     const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
     applyTheme(next);
-    try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* sem storage */ }
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      /* sem storage */
+    }
   };
 }
 
 /* ---------- painel de detalhe (htmx) ---------- */
 export function closeDetail() {
   const body = q("#detalheBody");
-  if (body) body.innerHTML = `<p class="text-sm text-slate-500" id="detalhePlaceholder">${t("detail.placeholder", null, getLang())}</p>`;
+  if (body)
+    body.innerHTML = `<p class="text-sm text-slate-500" id="detalhePlaceholder">${t("detail.placeholder", null, getLang())}</p>`;
 }
 
 /* ---------- idioma ---------- */
 function refresh() {
-  applyTranslations(document);                                  // textos estáticos do HTML
+  applyTranslations(document); // textos estáticos do HTML
   applyTheme(document.documentElement.getAttribute("data-theme")); // rótulos do botão de tema
-  closeDetail();                                                // painel volta ao placeholder traduzido
-  renderAll();                                                  // conteúdo gerado por JS
+  closeDetail(); // painel volta ao placeholder traduzido
+  renderAll(); // conteúdo gerado por JS
 }
 
 function initLangToggle() {
@@ -59,17 +68,16 @@ function initLangToggle() {
    atual a API mantém built_with_badge_enabled=true. O CSS já esconde; aqui o
    elemento sai do DOM de fato (inclusive para leitores de tela).               */
 function pruneNetlifyBadge() {
-  document.querySelectorAll('#nl-badge-frame, iframe[title="Powered by Netlify"]')
-    .forEach(el => el.remove());
+  document.querySelectorAll('#nl-badge-frame, iframe[title="Powered by Netlify"]').forEach(el => el.remove());
 }
 
 function boot() {
   initTheme();
   initLang();
-  bind();          // popula vendors e liga os controles
-  refresh();       // traduz o HTML estático e renderiza tudo
+  bind(); // popula vendors e liga os controles
+  refresh(); // traduz o HTML estático e renderiza tudo
   initLangToggle();
-  window.closeDetail = closeDetail;  // usado pelo botão "Fechar" dos partials
+  window.closeDetail = closeDetail; // usado pelo botão "Fechar" dos partials
 
   pruneNetlifyBadge();
   // o script do selo é async: ele pode criar o iframe depois do boot

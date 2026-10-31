@@ -1,0 +1,4 @@
+node_modules
+partials
+package-lock.json
+src/data.js
