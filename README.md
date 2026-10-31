@@ -9,29 +9,29 @@ The page is available in **Portuguese and English** (toggle in the header), ship
 ## What the page answers
 
 - Which model gives the most Intelligence per dollar, with and without a deal
-- What **one typical agent request** costs across all 70 models
+- What **one typical agent request** costs across all 95 models (catalog 97 minus headless Jev)
 - How much of the GOAT monthly allowance each model consumes, and how many requests that buys
-- What the free models are actually worth, compared against their closest benchmark neighbours
-- Where the $70 ceilings are, and why most models stop at $20
+- What the free models are actually worth, compared against paid flashes in the same Intelligence band
+- Where the $100 negotiated ceilings are, and why most models still sit at $20
 
 ## How the numbers are computed
 
-| Metric | Formula |
-|---|---|
-| Cost per request | `800 input + 50,000 cache read + 160 output` (the agent profile documented by Command Code) |
-| Cost per 1M (blend) | the same profile, normalised to 1M tokens |
-| Value index | `Intelligence ÷ cost per 1M` |
-| Balance (0–100) | geometric mean of intelligence (linear) and cheapness (log), both normalised — demands both ends |
-| 5h / weekly windows | 20% and 50% of the model's monthly ceiling (proportions confirmed by the official numbers) |
+| Metric              | Formula                                                                                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Cost per request    | `800 input + 50,000 cache read + 160 output` (the agent profile documented by Command Code)                                                                                    |
+| Cost per 1M (blend) | the same profile, normalised to 1M tokens                                                                                                                                      |
+| Value index         | `Intelligence ÷ cost per 1M`                                                                                                                                                   |
+| Balance (0–100)     | geometric mean of intelligence (linear, 15.4→57.6) and cheapness (log), both normalised — demands both ends; the top score is ~88, not 100, because the IQ max is now Opus 5.5 |
+| 5h / weekly windows | 20% and 50% of the model's monthly ceiling (proportions confirmed by the official numbers)                                                                                     |
 
-**‡** marks estimated Intelligence. The plan table leaves some models unscored, but each model page publishes a newer version of the same index (Artificial Analysis v4.3). The offset of **5.6 points** was measured across **53 models** present in both scales (sd 1.4, range 2.0–8.1). Estimates take part in Intelligence sorting and in the IQ floor, but are kept out of the value and balance indexes, which require an official score.
+Intelligence is the **unified catalog scale** (31 Oct 2026). Contributor variants and Ling 3.1 Flash 1019 inherit the base model's score. Models listed as "not yet scored" stay out of value and balance.
 
 ## Project structure
 
 ```
 index.html          page shell: static markup + data-i18n attributes (PT is the no-JS fallback)
 src/
-  data.js           the 70-model dataset (facts only)
+  data.js           the 95-model dataset (facts only)
   core.js           metrics, rankings, picks — pure, no DOM
   i18n/             pt.js · en.js dictionaries + t()/applyTranslations
   partials.js       (model, lang) → detail HTML fragment
@@ -52,25 +52,29 @@ folders exist, so switching language also switches which fragment is fetched.
 
 ## Development (TDD)
 
-Tests run on Node's built-in runner — no dependencies to install:
-
 ```bash
-npm test          # 32 tests: dataset, metrics, i18n, partials, build, i18n coverage
-npm run build     # writes partials/ (70 models × 2 languages)
+npm install       # eslint, prettier, husky, faker
+npm test          # dataset, metrics, faker, i18n, partials, build, coverage
+npm run lint      # ESLint
+npm run format    # Prettier --write
+npm run build     # writes partials/ (95 models × 2 languages)
 npm run dev       # build + static server on :8000
 ```
 
+The pre-commit hook (husky + lint-staged) formats staged files, runs ESLint and then the full test suite, including property tests generated with `@faker-js/faker`. GitHub Actions runs `format:check`, `lint`, `test` and `build` on every push and pull request.
+
 The suite is the guard rail for the analysis itself:
 
-- **dataset** — counts and spot values against the official table (70 models, 50 on GOAT, 6 deals, 3 free)
-- **metrics** — cost per request, blend, balance bounds, ceiling bands, window proportions, Max 20× doubling
+- **dataset** — counts and spot values against the official table (95 models, 69 on GOAT, 4 deals, 4 free)
+- **metrics** — cost per request, blend, balance bounds, ceiling bands ($10–$100), window proportions, Max 20× doubling
+- **faker** — synthetic models asserting the 800/50k/160 profile, free-model zeros, 20%/50% windows and 0–100 balance
 - **i18n** — key parity between languages, identical HTML tags and `{placeholders}`, interpolation, fallback
 - **partials** — unique slugs, language switching, peak/deal pricing, no untranslated key leaking into HTML
 - **coverage** — every dictionary key is used somewhere, and every `data-i18n` in the HTML exists in the dictionary
 
 ## Data sources
 
-[commandcode.ai/docs](https://commandcode.ai/docs) — Pricing & Limits, the Go/GOAT/Pro/Max plan pages, the model catalogue and each model's own page. Reference date: **Sep 14, 2026**.
+[commandcode.ai/docs](https://commandcode.ai/docs) — Pricing & Limits, the Go/GOAT/Pro/Max plan pages, the model catalogue and each model's own page. Reference date: **Oct 31, 2026**.
 
 Prices and deals change often; the Studio usage page always reflects what is actually charged per request.
 

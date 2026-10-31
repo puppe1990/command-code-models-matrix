@@ -6,11 +6,13 @@
 import { usd, usdReq, int, reqMonth, WINDOW } from "./core.js";
 import { t } from "./i18n/index.js";
 
-export const slugify = nome => nome
-  .toLowerCase()
-  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-  .replace(/[^a-z0-9]+/g, "-")
-  .replace(/^-+|-+$/g, "");
+export const slugify = nome =>
+  nome
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export const partialPath = (m, lang) => `/partials/${lang}/${slugify(m.n)}.html`;
 
@@ -33,24 +35,20 @@ export function modelPartial(m, lang) {
   // no idioma corrente do módulo e os dois idiomas sairiam iguais.
   const tr = (key, params) => t(key, params, lang);
   const r = reqMonth(m, "goat");
-  const iqTxt = m.iq != null
-    ? `${m.iq}`
-    : (m.iqEst != null ? `${tr("ui.approx")}${m.iqEst.toFixed(1)} ${tr("ui.estimateMark")}` : tr("table.noScore"));
-  const iqLabel = m.iq != null ? tr("detail.intelligence") : tr("detail.intelligenceEst");
+  const iqTxt = m.iq != null ? `${m.iq}` : tr("table.noScore");
+  const iqLabel = tr("detail.intelligence");
 
   const janelas = m.isFree
     ? `<p class="text-xs text-emerald-300">${tr("detail.freeQuota")}</p>`
-    : (r
+    : r
       ? `<div class="grid grid-cols-3 gap-2">
            ${celula(tr, tr("detail.window5h"), int(r.n * WINDOW.h5) + " " + tr("detail.requests"))}
            ${celula(tr, tr("detail.windowWeek"), int(r.n * WINDOW.week) + " " + tr("detail.requests"))}
            ${celula(tr, tr("detail.windowMonth"), int(r.n) + " " + tr("detail.requests"), r.est ? tr("ui.approx") : "")}
          </div>`
-      : `<p class="text-xs text-slate-500">${tr("detail.ceilingNone")}</p>`);
+      : `<p class="text-xs text-slate-500">${tr("detail.ceilingNone")}</p>`;
 
-  const teto = m.isFree
-    ? tr("detail.freeQuota")
-    : (m.cred != null ? `$${m.cred}` : tr("detail.ceilingNone"));
+  const teto = m.isFree ? tr("detail.freeQuota") : m.cred != null ? `$${m.cred}` : tr("detail.ceilingNone");
 
   return `
 <div class="space-y-4">
@@ -67,7 +65,7 @@ export function modelPartial(m, lang) {
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
     ${celula(tr, tr("detail.costReq"), usdReq(m.costReq))}
     ${celula(tr, tr("detail.blend"), m.blend === 0 ? "$0" : usd(m.blend))}
-    ${celula(tr, iqLabel, iqTxt, m.aa != null && m.iq == null ? `AA ${m.aa}` : "")}
+    ${celula(tr, iqLabel, iqTxt)}
     ${celula(tr, tr("detail.iqPerUsd"), m.value != null ? int(m.value) : tr("ui.na"))}
     ${celula(tr, tr("detail.balance"), m.balance != null ? m.balance.toFixed(0) : tr("ui.na"))}
     ${celula(tr, tr("detail.ceiling"), teto)}

@@ -7,7 +7,7 @@ import { t } from "../src/i18n/index.js";
 
 const byName = n => MODELS.find(m => m.n === n);
 
-test("slug é estável, sem acento e único entre os 70 modelos", () => {
+test("slug é estável, sem acento e único entre os 95 modelos", () => {
   assert.equal(slugify("DeepSeek V4 Pro"), "deepseek-v4-pro");
   assert.equal(slugify("Muse Spark 1.3 Contributor"), "muse-spark-1-3-contributor");
   assert.equal(slugify("Claude Haiku 4.5"), "claude-haiku-4-5");
@@ -37,7 +37,7 @@ test("partial traz o perfil completo do modelo", () => {
 });
 
 test("partial do grátis mostra a cota diária, e não teto/janelas", () => {
-  const html = modelPartial(byName("LongCat 2.0"), "pt");
+  const html = modelPartial(byName("Ling 3.1 Flash 1019"), "pt");
   assert.ok(html.includes("100 req/dia"));
   assert.ok(!html.includes("teto $"), "grátis não tem teto mensal");
 });
@@ -45,9 +45,9 @@ test("partial do grátis mostra a cota diária, e não teto/janelas", () => {
 test("partial marca preço de pico (DeepSeek) e preço cheio riscado (deal)", () => {
   const ds = modelPartial(byName("DeepSeek V4 Pro"), "pt");
   assert.ok(ds.includes("pico"), "DeepSeek tem preço de pico");
-  const deal = modelPartial(byName("MiMo V2.5"), "pt");
+  const deal = modelPartial(byName("MiniMax M3"), "pt");
   assert.ok(deal.includes("<s "), "deal mostra o preço cheio riscado");
-  assert.ok(deal.includes("$0.80"), "preço cheio do MiMo V2.5");
+  assert.ok(deal.includes("$0.60"), "preço cheio do MiniMax M3");
 });
 
 test("partial troca de idioma", () => {

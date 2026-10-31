@@ -11,7 +11,7 @@ const ler = p => readFile(join(raiz, p), "utf8");
 async function arquivosDe(dir) {
   const out = [];
   for (const e of await readdir(join(raiz, dir), { withFileTypes: true })) {
-    if (e.isDirectory()) out.push(...await arquivosDe(join(dir, e.name)));
+    if (e.isDirectory()) out.push(...(await arquivosDe(join(dir, e.name))));
     else if (e.name.endsWith(".js")) out.push(join(dir, e.name));
   }
   return out;
@@ -25,7 +25,7 @@ async function chavesEmUso() {
   const html = await ler("index.html");
   for (const m of html.matchAll(/data-i18n(?:-html|-title|-placeholder|-aria)?="([^"]+)"/g)) usadas.add(m[1]);
 
-  const fontes = [...await arquivosDe("src")];
+  const fontes = [...(await arquivosDe("src"))];
   for (const f of fontes) {
     const src = await ler(f);
     for (const m of src.matchAll(/\b(?:t|tr)\(\s*"([^"]+)"/g)) usadas.add(m[1]);

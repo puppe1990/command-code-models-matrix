@@ -3,9 +3,7 @@ import assert from "node:assert/strict";
 
 import { pt } from "../src/i18n/pt.js";
 import { en } from "../src/i18n/en.js";
-import {
-  LANGS, DICTS, DEFAULT_LANG, t, propsFor, isLang, otherLang, setLang, getLang
-} from "../src/i18n/index.js";
+import { LANGS, DICTS, DEFAULT_LANG, t, propsFor, isLang, otherLang, setLang, getLang } from "../src/i18n/index.js";
 
 const chaves = obj => Object.keys(obj);
 const tags = s => (s.match(/<\/?[a-z][a-z0-9]*/gi) || []).map(x => x.toLowerCase().replace(/[</]/g, "")).sort();
@@ -67,7 +65,7 @@ test("idioma é estado: normaliza, troca e persiste a escolha", () => {
   assert.equal(otherLang("en"), "pt");
   setLang("en");
   assert.equal(getLang(), "en");
-  setLang("fr");            // inválido volta para o padrão
+  setLang("fr"); // inválido volta para o padrão
   assert.equal(getLang(), "pt");
   setLang("pt");
 });

@@ -4,8 +4,8 @@ export const pt = {
   /* ---------- cabeçalho ---------- */
   "header.title": "Matriz de Modelos & Planos",
   "header.subtitle": "Command Code · valores, custo por token, custo por requisição, limites e benchmark",
-  "header.source": "Fonte: <span class=\"text-slate-300\">commandcode.ai/docs</span> — Pricing & Limits + plano GOAT",
-  "header.ref": "Referência: <span class=\"text-slate-300\">14/set/2026</span> · preços em USD / 1M tokens",
+  "header.source": 'Fonte: <span class="text-slate-300">commandcode.ai/docs</span> — Pricing & Limits + plano GOAT',
+  "header.ref": 'Referência: <span class="text-slate-300">31/out/2026</span> · preços em USD / 1M tokens',
   "header.theme.toLight": "Claro",
   "header.theme.toDark": "Escuro",
   "header.theme.ariaLight": "Ativar tema claro",
@@ -17,7 +17,8 @@ export const pt = {
   "plans.h2": "1. Planos do Command Code",
   "plans.lead": "Quanto você paga vs. quanto recebe em créditos — e o multiplicador efetivo.",
   "plans.noMarkup": "créditos de modelo são cobrados a preço de API, sem markup",
-  "plans.note.html": "Janelas rolantes de uso limitam apenas os <strong class=\"text-slate-400\">créditos inclusos</strong>; créditos extras (top-up) não são limitados, acumulam e nunca expiram. O plano <strong class=\"text-slate-400\">Go ($1)</strong> serve todos os modelos open-source e alguns premium (GPT-5.6 Luna, Grok 4.5, Muse Spark Contributor, Qwen Max &amp; Plus).",
+  "plans.note.html":
+    'Janelas rolantes de uso limitam apenas os <strong class="text-slate-400">créditos inclusos</strong>; créditos extras (top-up) não são limitados, acumulam e nunca expiram. O plano <strong class="text-slate-400">Go ($1)</strong> serve os open-source e alguns premium (GPT-6 Luna, Grok 4.5, Muse Spark Contributor, Qwen Max &amp; Plus).',
   "plans.perMonth": "/mês",
   "plans.credits": "{value} de créditos",
   "plans.payAsYouGo": "paga só o consumo",
@@ -27,18 +28,18 @@ export const pt = {
   "plans.windowsLabel": "Janelas:",
   "plans.filterBtn": "Filtrar por este plano",
   "plan.go.models": "Open-source + alguns premium",
-  "plan.go.limits": "$3 / 5h · $6 / semanal",
+  "plan.go.limits": "$2 / 5h · $5 / semanal",
   "plan.go.note": "Entrada global. Sem acesso à API.",
-  "plan.goat.models": "30+ open + alguns closed",
-  "plan.goat.limits": "$14 / 5h · $35 / semanal",
-  "plan.goat.note": "7× de multiplicador — o melhor valor do mercado.",
-  "plan.pro.models": "45+ open + Claude/GPT/Gemini",
-  "plan.pro.limits": "$16 / 5h · $40 / semanal",
-  "plan.pro.note": "Premium com até $20 de teto por modelo.",
-  "plan.max10.models": "Todos (Opus, Fable, Fugu)",
+  "plan.goat.models": "open + Haiku 5.5, Sonnet 5.5, GPT-6 Luna, Grok",
+  "plan.goat.limits": "$20 / 5h · $50 / semanal",
+  "plan.goat.note": "10× de multiplicador — teto por modelo até $100.",
+  "plan.pro.models": "GOAT + Claude/GPT/Gemini 4 Argon",
+  "plan.pro.limits": "$22 / 5h · $55 / semanal",
+  "plan.pro.note": "Premium com teto até $110 nos flashes negociados.",
+  "plan.max10.models": "Todos (Opus, Fable, Fugu, Wonder, Astra)",
   "plan.max10.limits": "$45 / 5h · $90 / semanal",
   "plan.max10.note": "$150 standard + $100 premium.",
-  "plan.max20.models": "Todos (Opus, Fable, Fugu)",
+  "plan.max20.models": "Todos (Opus, Fable, Fugu, Wonder, Astra)",
   "plan.max20.limits": "$90 / 5h · $180 / semanal",
   "plan.max20.note": "$300 standard + $200 premium.",
   "plan.provider.models": "Todos via API (pay-as-you-go)",
@@ -49,76 +50,102 @@ export const pt = {
   "kpi.h2": "2. Destaques da matriz",
   "kpi.lead": "Os extremos de cada eixo — útil para saber onde estão as apostas antes de olhar a tabela.",
   "kpi.balance.label": "Inteligente e barato",
-  "kpi.balance.body.html": "equilíbrio <span class=\"mono text-sky-300\">{balance}</span>/100 · IQ {iq} a {cost}/req<br>teto ${cred} (GOAT) · {req} req/mês",
-  "kpi.smartest.label": "Maior Intelligence (nota oficial)",
-  "kpi.smartest.body.html": "IQ <span class=\"text-slate-200 font-bold\">{iq}</span> · {cost}/req · {out} out<br>teto ${cred} · {req} req/mês",
+  "kpi.balance.body.html":
+    'equilíbrio <span class="mono text-sky-300">{balance}</span>/100 · IQ {iq} a {cost}/req<br>teto ${cred} (GOAT) · {req} req/mês',
+  "kpi.smartest.label": "Maior Intelligence (catálogo)",
+  "kpi.smartest.body.html":
+    'IQ <span class="text-slate-200 font-bold">{iq}</span> · {cost}/req · {out} out<br>plano {plan}+ — fora do GOAT',
   "kpi.volume.label": "Maior volume no GOAT",
-  "kpi.volume.body.html": "<span class=\"text-slate-200 font-bold\">{req}</span> requisições/mês · teto ${cred}<br>{cost}/req · IQ {iq} · {cache} cache",
+  "kpi.volume.body.html":
+    '<span class="text-slate-200 font-bold">{req}</span> requisições/mês · teto ${cred}<br>{cost}/req · IQ {iq} · {cache} cache',
   "kpi.cheapest.label": "Menor custo por requisição",
-  "kpi.cheapest.body.html": "<span class=\"text-slate-200 font-bold\">{cost}</span> por requisição agêntica<br>IQ {iq} · teto ${cred} (GOAT)",
+  "kpi.cheapest.body.html":
+    '<span class="text-slate-200 font-bold">{cost}</span> por requisição agêntica<br>IQ {iq} · teto ${cred} (GOAT)',
   "kpi.cache.label": "Cache read mais barato",
-  "kpi.cache.body.html": "<span class=\"text-slate-200 font-bold\">{cache}</span> por 1M em cache read{tie}<br>melhor sem deal: {nonDeal} ({nonDealName})",
+  "kpi.cache.body.html":
+    '<span class="text-slate-200 font-bold">{cache}</span> por 1M em cache read{tie}<br>melhor sem deal: {nonDeal} ({nonDealName})',
   "kpi.cache.tie": " (empate com {name})",
   "kpi.cache.second": " · 2º: {cache} ({name})",
   "kpi.tier.label": "Teto de crédito no GOAT",
-  "kpi.tier.value": "{max} máx · ${floor} padrão",
-  "kpi.tier.body.html": "{n} dos {total} modelos pagos do GOAT têm teto de ${floor}<br>só {n70} chegam a ${max}: {names}",
+  "kpi.tier.value": "{max} máx · $20 padrão",
+  "kpi.tier.body.html":
+    "{n} dos {total} modelos pagos do GOAT ficam no padrão de $20<br>{nMax} chegam a ${max}: {names}",
   "kpi.noDeal.label": "Melhor com preço cheio (sem deal)",
-  "kpi.noDeal.body.html": "equilíbrio {balance}/100 sem depender de desconto · IQ {iq}<br>{inp} in / {out} out / {cache} cache · teto ${cred}",
+  "kpi.noDeal.body.html":
+    "equilíbrio {balance}/100 sem depender de desconto · IQ {iq}<br>{inp} in / {out} out / {cache} cache · teto ${cred}",
   "kpi.free.label": "Grátis (custo zero)",
-  "kpi.free.body.html": "IQ {iq} · {tps} tok/s · {ctx} de contexto<br>100 req/dia · zero crédito consumido",
+  "kpi.free.body.html": "IQ {iq} herdado do {base} · {ctx} de contexto<br>promoção grátis · 100 req/dia · zero crédito",
 
   /* ---------- 3. como o GOAT cobra ---------- */
   "tiers.h2": "3. Como o GOAT cobra: teto por modelo e janelas",
-  "tiers.lead.html": "O erro mais comum ao ler o plano é tratar os $70 como um bolo único. Não é: o GOAT dá um <strong class=\"text-slate-300\">teto mensal por modelo</strong>, e esse teto varia de $20 a $70. A escolha do modelo muda o quanto você consegue codar no mês.",
+  "tiers.lead.html":
+    'O erro mais comum ao ler o plano é tratar os $100 como um bolo único. Não é: o GOAT dá um <strong class="text-slate-300">teto mensal por modelo</strong>, e esse teto vai de $10 a $100. A escolha do modelo muda o quanto você consegue codar no mês.',
   "tiers.payReceive": "Você paga → recebe",
-  "tiers.payBody.html": "Só que os $70 são <em>somas de tetos por modelo</em>, não um saldo livre. Gastar tudo no GPT-5.6 Sol não deixa o mesmo $70 disponível no Gemini 3.8 Flash.",
+  "tiers.payBody.html":
+    "Só que os $100 são <em>somas de tetos por modelo</em>, não um saldo livre. Gastar o teto no DeepSeek V4.1 Flash não deixa o mesmo $100 disponível no Claude Sonnet 5.5.",
   "tiers.windows": "3 janelas de uso",
   "tiers.w5h": "5 horas",
   "tiers.wWeek": "semana",
   "tiers.wMonth": "mês",
-  "tiers.windowsBody.html": "<strong class=\"text-slate-300\">$14 em qualquer 5 h</strong> · <strong class=\"text-slate-300\">$35 em 7 dias</strong> · <strong class=\"text-slate-300\">teto do modelo no mês</strong>. A janela de 5 h é a que trava primeiro num dia pesado de agente.",
+  "tiers.windowsBody.html":
+    '<strong class="text-slate-300">$20 em qualquer 5 h</strong> · <strong class="text-slate-300">$50 em 7 dias</strong> · <strong class="text-slate-300">teto do modelo no mês</strong>. A janela de 5 h é a que trava primeiro num dia pesado de agente.',
   "tiers.negociated": "Modelos novos vs. negociados",
-  "tiers.negociatedBody.html": "Onde a Command Code negociou capacidade, o teto sobe (até os $70 cheios). Onde não negociou, o modelo novo entra no padrão de <strong class=\"text-slate-300\">2× o valor pago</strong>: $20 de teto no plano de $10.",
-  "tiers.speedBody.html": "Variantes de velocidade (<em>GLM-5.2 Fast</em>, <em>Kimi K2.7 Code HighSpeed</em>) <strong class=\"text-slate-300\">não herdam</strong> o teto do modelo base — ficam nos $20.",
-  "tiers.ceilingEq.html": "Teto = pontos; a autonomia real é <span class=\"mono text-slate-400\">teto ÷ custo por requisição</span>.",
+  "tiers.negociatedBody.html":
+    'Onde a Command Code negociou capacidade, o teto sobe (até $100 no V4.1 Flash, GLM-5.3 Flash e Ling 3.1 Flash). Onde não negociou, o modelo novo entra no padrão de <strong class="text-slate-300">2× o valor pago</strong>: $20 de teto no plano de $10. Premium no GOAT: Sonnet 5.5 a $10, Haiku 5.5 a $20.',
+  "tiers.speedBody.html":
+    'Variantes de velocidade (<em>GLM-5.2 Fast</em>, <em>Kimi K2.7 Code HighSpeed</em>) <strong class="text-slate-300">não herdam</strong> o teto do modelo base — ficam nos $20.',
+  "tiers.ceilingEq.html":
+    'Teto = pontos; a autonomia real é <span class="mono text-slate-400">teto ÷ custo por requisição</span>.',
   "tiers.tableTitle": "Distribuição dos tetos no GOAT",
-  "tiers.summary.html": "<strong class=\"text-slate-200\">{paid}</strong> modelos pagos · <strong class=\"text-slate-200\">{bands}</strong> faixas de teto · de ${min} a ${max}",
+  "tiers.summary.html":
+    '<strong class="text-slate-200">{paid}</strong> modelos pagos · <strong class="text-slate-200">{bands}</strong> faixas de teto · de ${min} a ${max}',
   "tiers.tierMeta": "{n} modelo{s} · {share}%",
-  "tiers.freeTierMeta": "3 modelos · sem teto",
+  "tiers.freeTierMeta": "4 modelos · sem teto",
   "tiers.freeNote": "100 req/dia por conta (Laguna S 2.1 é livre enquanto houver capacidade)",
-  "tiers.note": "Teto publicado por modelo na página do plano GOAT. Os três modelos grátis (Laguna S 2.1, LongCat 2.0 e Ling 3.0 Flash Sante) ficam fora de qualquer teto.",
+  "tiers.note":
+    "Teto publicado por modelo na página do plano GOAT. Os quatro modelos grátis (Ling 3.1 Flash 1019, Beam 1.0, Glyph Cluster e Laguna S 2.1) ficam fora de qualquer teto.",
   "tiers.reqPerMonth": " · {req} req/mês",
 
   /* ---------- 4. recomendações ---------- */
   "picks.h2": "4. Recomendações por objetivo",
-  "picks.lead": "A resposta muda com a pergunta. Cada cartão é o vencedor de um critério diferente, calculado em cima dos mesmos dados da matriz — não é opinião, é o topo de cada eixo.",
+  "picks.lead":
+    "A resposta muda com a pergunta. Cada cartão é o vencedor de um critério diferente, calculado em cima dos mesmos dados da matriz — não é opinião, é o topo de cada eixo.",
   "picks.reqMonth": "req/mês",
   "picks.perReq": "$/req",
   "picks.iq": "IQ",
   "picks.openDetail": "Ver detalhe do modelo",
   "pick.best.label": "Quero o melhor no geral",
-  "pick.best.why.html": "Maior Intelligence da tabela inteira (IQ {iq}) pagando preço de modelo pequeno: {cost} por requisição. É o topo das duas métricas ao mesmo tempo. <strong class=\"text-slate-300\">Risco:</strong> é preço Contributor (deal) — se o acordo cair, volta a {listIn} in / {listOut} out.",
+  "pick.best.why.html":
+    'Melhor equilíbrio da matriz (IQ {iq} a {cost}/req). Não é o mais inteligente da tabela — o Opus 5.5 ganha em nota — mas é o que junta capacidade de fronteira com preço de modelo pequeno. <strong class="text-slate-300">Risco:</strong> é preço Contributor (deal) — se o acordo cair, volta a {listIn} in / {listOut} out.',
   "pick.smartest.label": "Quero o mais inteligente",
-  "pick.smartest.why.html": "IQ {iq}, o mais alto publicado, empatado com {tieName}: mesma capacidade, {cost}/req contra {tieCost}/req. Com o mesmo teto de ${cred}, isso dá <strong class=\"text-slate-300\">{req}</strong> requisições/mês contra {tieReq}.",
+  "pick.smartest.why.html":
+    'IQ {iq}, o mais alto publicado, empatado com {tieName}: mesma capacidade, {cost}/req contra {tieCost}/req. Com o mesmo teto de ${cred}, isso dá <strong class="text-slate-300">{req}</strong> requisições/mês contra {tieReq}.',
   "pick.smartest.alone": "IQ {iq}, o mais alto publicado, a {cost} por requisição.",
   "pick.volume.label": "Quero rodar o mês inteiro",
-  "pick.volume.why.html": "O maior volume do GOAT: teto de ${cred} com requisição de {cost}. IQ {iq} é honesto para refactor, testes e tarefas de repositório. É o modelo para deixar no /model e esquecer.",
+  "pick.volume.why.html":
+    "O maior volume do GOAT: teto negociado de ${cred} com requisição de {cost}. IQ {iq} no catálogo unificado — suficiente para refactor, testes e o dia a dia do repositório. É o modelo para deixar no /model e esquecer.",
   "pick.fastest.label": "Quero a resposta mais rápida",
-  "pick.fastest.why.html": "<span class=\"text-slate-200 font-bold\">{tps} tok/s</span> — o mais rápido da tabela, com IQ {iq}. Rapidez muda a sensação do agente: menos espera entre tool calls faz o loop inteiro parecer mais curto. Custa {cost}/req com teto de ${cred}.",
+  "pick.fastest.why.html":
+    '<span class="text-slate-200 font-bold">{tps} tok/s</span> — o mais rápido da tabela, com IQ {iq}. Rapidez muda a sensação do agente: menos espera entre tool calls faz o loop inteiro parecer mais curto. Custa {cost}/req com teto de ${cred}.',
   "pick.noDeal.label": "Não quero depender de deal",
-  "pick.noDeal.why.html": "Preço cheio, sem desconto temporário: {inp} in / {out} out / {cache} cache. Equilíbrio {balance}/100 é o melhor entre os modelos sem deal — e é o mesmo que lidera em volume, o que só reforça a escolha.",
+  "pick.noDeal.why.html":
+    "Preço cheio, sem desconto temporário: {inp} in / {out} out / {cache} cache. Equilíbrio {balance}/100 é o melhor entre os modelos sem deal — IQ de Pro com cache de flash, teto de ${cred} no GOAT.",
   "pick.bigBudget.label": "Quero o maior teto possível",
-  "pick.bigBudget.why.html": "Entre os {n} modelos com teto cheio de ${max} ({names}), é o de melhor equilíbrio. Teto alto só ajuda se o custo por requisição for baixo — aqui é {cost}.",
+  "pick.bigBudget.why.html":
+    "Entre os {n} modelos com teto cheio de ${max} ({names}), é o de melhor equilíbrio. Teto alto só ajuda se o custo por requisição for baixo — aqui é {cost}.",
   "pick.premium.label": "Preciso do que só existe fora do GOAT",
-  "pick.premium.why.html": "O mais capaz entre os que exigem Pro/Max: IQ {iq} a {cost} por requisição. Nesse tier o que se compra é teto de capacidade e acesso a laboratório fechado, não eficiência — vale quando o modelo do GOAT não fecha a tarefa.",
+  "pick.premium.why.html":
+    "O mais capaz entre os que exigem Pro/Max: IQ {iq} a {cost} por requisição. Nesse tier o que se compra é teto de capacidade e acesso a laboratório fechado, não eficiência — vale quando o modelo do GOAT não fecha a tarefa.",
   "pick.free.label": "Quero grátis",
-  "pick.free.why.html": "Único modelo grátis com IQ publicado ({iq}) — os outros dois (Laguna S 2.1 e Ling 3.0 Flash Sante) não têm nota. {tps} tok/s, {ctx} de contexto, 100 req/dia no teto da conta.",
+  "pick.free.why.html":
+    "Promoção temporária do {base} (IQ {iq} herdado), {ctx} de contexto, 100 req/dia, até 16:00 UTC de 3/nov/2026. Beam, Glyph Cluster e Laguna S 2.1 continuam grátis sem nota.",
 
   /* ---------- 5. ranking ---------- */
   "ranking.h2": "5. Ranking — melhor custo-benefício",
-  "ranking.lead.html": "Índice = <span class=\"mono text-sky-300\">Intelligence</span> ÷ <span class=\"mono text-sky-300\">custo por 1M tokens</span> (perfil de requisição agêntica: 800 input novo + 50.000 cache read + 160 output). A opção <strong class=\"text-emerald-400\">⭐ Inteligente e barato</strong> usa a métrica de equilíbrio, que exige as duas pontas.",
-  "ranking.note.html": "modelos grátis ficam fora das duas métricas (custo zero = benefício infinito)<br>equilíbrio = média geométrica de IQ e barateza, normalizados em 0–100",
+  "ranking.lead.html":
+    'Índice = <span class="mono text-sky-300">Intelligence</span> ÷ <span class="mono text-sky-300">custo por 1M tokens</span> (perfil de requisição agêntica: 800 input novo + 50.000 cache read + 160 output). A opção <strong class="text-emerald-400">⭐ Inteligente e barato</strong> usa a métrica de equilíbrio, que exige as duas pontas.',
+  "ranking.note.html":
+    "modelos grátis ficam fora das duas métricas (custo zero = benefício infinito)<br>equilíbrio = média geométrica de IQ e barateza, normalizados em 0–100",
   "ranking.reqWeek": "req/sem",
   "ranking.balanceShort": "equilíb.",
   "ranking.iqShort": "IQ",
@@ -136,7 +163,7 @@ export const pt = {
   "filters.sort": "Ordenar por",
   "filters.onlyPlan": "mostrar apenas modelos inclusos no plano selecionado",
   "filters.csv": "Exportar CSV",
-  "cat.all": "Todos os 70 modelos",
+  "cat.all": "Todos os 95 modelos",
   "cat.goat": "Inclusos no GOAT",
   "cat.proplus": "Só em Pro / Max (premium)",
   "cat.deals": "Com deal ativo",
@@ -188,7 +215,8 @@ export const pt = {
   "table.iqPerUsd": "IQ/US$",
   "table.iqPerUsdTitle": "Pontos de Intelligence por US$ 1 a cada 1M tokens",
   "table.balance": "Equilíb.",
-  "table.balanceTitle": "Inteligente E barato: média geométrica de inteligência e barateza, normalizadas. Penaliza modelo barato porém fraco.",
+  "table.balanceTitle":
+    "Inteligente E barato: média geométrica de inteligência e barateza, normalizadas. Penaliza modelo barato porém fraco.",
   "table.tps": "tok/s",
   "table.minPlan": "Plano mín.",
   "table.req": "Req/mês",
@@ -198,83 +226,111 @@ export const pt = {
   "table.noScore": "s/ nota",
   "table.free": "grátis",
   "table.freeQuota": "grátis †",
-  "table.freeQuotaTitle": "LongCat 2.0 e Ling 3.0 Flash Sante: 100 req/dia; Laguna S 2.1: livre enquanto houver capacidade",
+  "table.freeQuotaTitle":
+    "Ling 3.1 Flash 1019, Beam 1.0 e Glyph Cluster: 100 req/dia; Laguna S 2.1: livre enquanto houver capacidade",
   "table.topPick": "★ melhor equilíbrio do filtro",
-  "table.reqWindowsTitle": "As janelas do plano são tetos rolantes de 5 h e 7 dias, proporcionais ao teto mensal deste modelo — não são taxas por período (semana × 4 não dá o mês)",
+  "table.reqWindowsTitle":
+    "As janelas do plano são tetos rolantes de 5 h e 7 dias, proporcionais ao teto mensal deste modelo — não são taxas por período (semana × 4 não dá o mês)",
   "table.reqWindows": "5h {h5} · sem {week}",
   "table.empty": "Nenhum modelo encontrado com os filtros atuais.",
   "table.openDetail": "Abrir detalhe de {name}",
-  "legend.free.html": "† requisições grátis: <strong class=\"text-slate-400\">LongCat 2.0</strong> e <strong class=\"text-slate-400\">Ling 3.0 Flash Sante</strong> limitadas a 100 requisições/dia por conta; <strong class=\"text-slate-400\">Laguna S 2.1</strong> livre enquanto houver capacidade. Modelos em <span class=\"text-rose-400\">vermelho</span> não estão inclusos no plano selecionado. <span class=\"mono\">≈</span> marca valor estimado (não publicado): no req/mês, teto ÷ custo por requisição. Valores <s>riscados</s> são o preço cheio antes do deal.",
-  "legend.estimate.html": "‡ Intelligence estimada. A tabela do plano não pontua alguns modelos, mas a página individual de cada um publica o índice do <strong class=\"text-slate-400\">Artificial Analysis v4.3</strong> — uma versão mais nova da mesma escala. Nos 53 modelos que aparecem nas duas, a página fica <strong class=\"text-slate-400\">5,6 pontos abaixo em média</strong> (de 2,0 a 8,1, desvio de 1,4); é essa diferença que aplico aqui, e o valor original aparece embaixo (AA). O erro do método fica em torno de ±1,4 ponto. A estimativa entra na ordenação por Intelligence e no piso de IQ, mas fica <strong class=\"text-slate-400\">fora do custo-benefício e do equilíbrio</strong>, que exigem nota oficial. Dez modelos seguem sem nota em nenhuma das duas fontes.",
-  "count.models": "<strong class=\"text-slate-200\">{n}</strong> modelo(s) listado(s) · plano <strong class=\"text-sky-300\">{plan}</strong> · {credits}{floor}",
+  "legend.free.html":
+    '† requisições grátis: <strong class="text-slate-400">Ling 3.1 Flash 1019</strong>, <strong class="text-slate-400">Beam 1.0</strong> e <strong class="text-slate-400">Glyph Cluster</strong> limitadas a 100 requisições/dia por conta; <strong class="text-slate-400">Laguna S 2.1</strong> livre enquanto houver capacidade. A promoção do Ling 1019 vale até 16:00 UTC de 3/nov/2026. Modelos em <span class="text-rose-400">vermelho</span> não estão inclusos no plano selecionado. <span class="mono">≈</span> marca valor estimado (não publicado): no req/mês, teto ÷ custo por requisição. Valores <s>riscados</s> são o preço cheio antes do deal.',
+  "legend.estimate.html":
+    'Intelligence é a escala <strong class="text-slate-400">unificada do catálogo</strong> (31/out/2026) — a tabela de planos deixou de publicar um índice paralelo. Variantes <strong class="text-slate-400">Contributor</strong> e o <strong class="text-slate-400">Ling 3.1 Flash 1019</strong> herdam a nota do modelo-base. Quem aparece como "not yet scored" fica de fora do custo-benefício e do equilíbrio. Jev (headless) não entra nesta matriz.',
+  "count.models":
+    '<strong class="text-slate-200">{n}</strong> modelo(s) listado(s) · plano <strong class="text-sky-300">{plan}</strong> · {credits}{floor}',
   "count.credits": "${value} de créditos/mês",
   "count.payg": "pay-as-you-go",
   "count.floor": " · piso de IQ ≥ {iq}",
-  "count.best": " · melhor equilíbrio: <strong class=\"text-emerald-400\">{name}</strong> ({pts} pts)",
+  "count.best": ' · melhor equilíbrio: <strong class="text-emerald-400">{name}</strong> ({pts} pts)',
 
   /* ---------- 7. grátis ---------- */
   "free.h2": "7. O que valem os grátis",
-  "free.lead": "Os três modelos de custo zero não são versões reduzidas de nada: são o piso do catálogo e ficam fora de qualquer teto de crédito. Abaixo, cada um comparado com os vizinhos mais próximos em benchmark — os mesmos que as páginas oficiais listam como rivais diretos.",
-  "free.tableTitle": "LongCat 2.0 · vizinhos por benchmark",
-  "free.tableSub": "único grátis com nota publicada",
+  "free.lead":
+    "Quatro modelos de custo zero, fora de qualquer teto de crédito. O Ling 3.1 Flash 1019 é promoção temporária do Ling 3.1 Flash (IQ 41,1) — o único grátis com nota, herdada do base. Abaixo, ele contra os flashes pagos da mesma faixa.",
+  "free.tableTitle": "Ling 3.1 Flash 1019 · vizinhos por Intelligence",
+  "free.tableSub": "único grátis com nota (herdada do base)",
   "free.colModel": "Modelo",
-  "free.colIq": "IQ (AA)",
-  "free.colIqTitle": "Intelligence do Artificial Analysis v4.3 — mesma escala em todas as linhas desta tabela",
-  "free.colCoding": "Coding",
-  "free.colCodingTitle": "Coding Index do Artificial Analysis",
+  "free.colIq": "IQ",
+  "free.colIqTitle": "Intelligence do catálogo oficial — mesma escala em todas as linhas desta tabela",
   "free.colPerReq": "$/req",
   "free.col3k": "3.000 req",
   "free.col3kTitle": "Custo de 3.000 requisições — o teto mensal do grátis (100/dia)",
   "free.badge": "grátis",
   "free.noCeiling": "sem teto: 100 req/dia",
   "free.ceiling": "teto ${value}",
-  "free.note.html": "Vizinho mais próximo: <strong class=\"text-slate-300\">Step 3.7 Flash</strong> (IQ {stepIq} contra {longIq}) — e o LongCat ainda ganha em Coding ({longCoding} contra {stepCoding}), custando <strong class=\"text-slate-300\">$0</strong> em vez de {stepCost} pelas mesmas 3.000 requisições. Quem bate o LongCat nos dois eixos é o <strong class=\"text-slate-300\">MiMo V2.5</strong> (IQ {mimoIq}, Coding {mimoCoding}), a {mimoCost} por 3.000 req.",
+  "free.note.html":
+    'O Ling 1019 herda IQ {lingIq} do Ling 3.1 Flash pago — as mesmas 3.000 req custariam {paidCost} no modelo cheio (teto $100 no GOAT). Na faixa, <strong class="text-slate-300">GLM-5.3 Flash</strong> faz {glmIq} a {glmCost} (teto ${glmCred}) e <strong class="text-slate-300">MiniMax M3.1 Flash</strong> faz {m31Iq} a {m31Cost}. O premium barato do GOAT é o <strong class="text-slate-300">Haiku 5.5</strong> (IQ {haikuIq}) a {haikuCost} pelas mesmas 3.000 req.',
   "free.value.title": "Quanto vale o grátis",
-  "free.value.body.html": "<p><strong class=\"text-emerald-300\">100 requisições/dia por conta</strong> — ~3.000 por mês, sem consumir crédito. Os três juntos dão até <strong class=\"text-slate-300\">9.000 requisições/mês</strong> de volume de graça.</p><p>Substituir essas 3.000 req pelo vizinho mais barato da faixa custaria <strong class=\"text-slate-200\">{cheap}</strong>; pelo mais caro, <strong class=\"text-slate-200\">{dear}</strong>. Em créditos, o grátis vale <em>de menos de $1 a ~$7 por mês</em>.</p><p>O valor real não é preço, é disponibilidade: passada a janela de 5 h, a semanal ou o teto do modelo, os pagos param de responder e <strong class=\"text-slate-300\">só os grátis continuam</strong>.</p>",
-  "free.noscore.title": "Os dois sem nota",
-  "free.noscore.body.html": "<p><strong class=\"text-slate-300\">Laguna S 2.1</strong> (256K) e <strong class=\"text-slate-300\">Ling 3.0 Flash Sante</strong> (262K) não têm nota publicada em nenhuma das duas fontes — nem Intelligence, nem velocidade. Sem benchmark, qualquer comparação seria invenção: a própria página do Ling lista como rival o <strong class=\"text-slate-300\">Claude Haiku 4.5</strong>, que na mesma escala faz IQ 15,4, o piso do catálogo.</p><p>Na prática: use os dois como volume de emergência (100 req/dia cada) e não como substituto do modelo principal — entre os grátis, só o LongCat tem benchmark para se posicionar.</p>",
+  "free.value.body.html":
+    '<p><strong class="text-emerald-300">100 requisições/dia por conta</strong> nos três com cota (Ling 1019, Beam, Glyph) — ~3.000 por mês cada, sem consumir crédito. Laguna S 2.1 é livre enquanto houver capacidade.</p><p>Substituir 3.000 req do Ling 1019 pelo vizinho pago mais barato da faixa custaria <strong class="text-slate-200">{cheap}</strong>; pelo mais caro, <strong class="text-slate-200">{dear}</strong>.</p><p>O valor real não é preço, é disponibilidade: passada a janela de 5 h, a semanal ou o teto do modelo, os pagos param e <strong class="text-slate-300">só os grátis continuam</strong>. A promoção do Ling 1019 acaba em 3/nov/2026, 16:00 UTC.</p>',
+  "free.noscore.title": "Os três sem nota",
+  "free.noscore.body.html":
+    '<p><strong class="text-slate-300">Beam 1.0</strong>, <strong class="text-slate-300">Glyph Cluster</strong> e <strong class="text-slate-300">Laguna S 2.1</strong> não têm Intelligence publicada. Sem benchmark, qualquer ranking seria invenção.</p><p>Na prática: use os três como volume de emergência (100 req/dia em Beam e Glyph; Laguna livre enquanto houver capacidade) e não como substituto do modelo principal — entre os grátis, só o Ling 1019 tem nota para se posicionar, e ela é promoção.</p>',
 
   /* ---------- metodologia ---------- */
   "method.h2": "Metodologia",
-  "method.blend.html": "<strong class=\"text-slate-200\">Custo por 1M (blend agêntico)</strong> — perfil típico documentado pelo Command Code: ~800 tokens de input novo, ~50.000 tokens de cache read e ~160 tokens de output por requisição. Como o harness roda com ~98% de cache hit, o custo real é dominado pelo preço de <em>cache read</em>, e não pelo input.",
-  "method.perReq.html": "<strong class=\"text-slate-200\">$/req</strong> — o mesmo perfil, em dólares: <span class=\"mono\">(800·in + 50.000·cache + 160·out) ÷ 1.000.000</span>. É a unidade que importa: teto e janelas não estão em tokens, estão em dólares.",
-  "method.cred.html": "<strong class=\"text-slate-200\">Teto $</strong> — crédito mensal daquele modelo específico no GOAT, publicado na página do plano. Vai de $20 (novos, variantes de velocidade e a maioria dos modelos) a $70 (GPT-5.6 Sol, GLM-5.2, Tencent Hy3, Qwen 3.8 27B).",
-  "method.window.html": "<strong class=\"text-slate-200\">Janelas 5 h / semana</strong> — 20% e 50% do teto mensal do modelo (a doc publica os três números e a proporção se confirma em todos: $14 = 20% de $70, $35 = 50%). São <em>tetos rolantes, não taxas</em>: o semanal existe para impedir que o mês inteiro seja consumido em poucos dias, então multiplicar o semanal por 4 não resulta no mensal (no DeepSeek V4 Flash: 76.900 × 4 = 307.600, contra um teto mensal de 154.000). Por isso um modelo de teto $20 tem 5 h de <em>$4</em>, e não de $14.",
-  "method.value.html": "<strong class=\"text-slate-200\">Custo-benefício</strong> — índice = Intelligence ÷ custo/1M (blend). Mede \"quanto de capacidade você compra por dólar\" no uso real de agente.",
-  "method.balance.html": "<strong class=\"text-slate-200\">Equilíbrio (⭐ inteligente e barato)</strong> — exige <em>inteligência alta E preço baixo</em> ao mesmo tempo. Normaliza o IQ (escala linear, 17,4→53) e a barateza (escala log, de $0,0042 a $0,66 por 1M) e combina por <strong class=\"text-slate-200\">média geométrica</strong>, gerando 0–100. Pelo ratio puro, o MiMo V2.5 (IQ 28,2) fica em 5º só por ser barato; pelo equilíbrio cai para 10º, e o GLM-5.3 Flash (IQ 46,2) sobe de 8º para 5º. Zera quando falta nota de IQ ou preço.",
-  "method.floor.html": "<strong class=\"text-slate-200\">Piso de inteligência</strong> — filtro que exige IQ ≥ X, para o ranking não ser dominado por modelos baratos porém fracos. Combine com \"ordenar por requisições/mês\" para achar <em>volume com capacidade</em>.",
-  "method.iq.html": "<strong class=\"text-slate-200\">Intelligence</strong> — índice composto publicado nas tabelas de modelos do Command Code. \"not yet scored\" = a tabela do plano não pontua o modelo (não entra nos rankings de custo-benefício nem de equilíbrio). Quando a página individual do modelo publica nota (Artificial Analysis v4.3), ela aparece como estimativa marcada com <strong class=\"text-slate-200\">‡</strong>, convertida para a escala da tabela pela diferença média de 5,6 pontos medida nos 53 modelos presentes nas duas (erro do método ≈ ±1,4).",
-  "method.deepseek.html": "<strong class=\"text-slate-200\">DeepSeek</strong> — preço exibido é o <em>off-peak</em> (17 h/dia). Pico = 01:00–04:00 e 06:00–10:00 UTC, seg–sex, cerca de 2× o valor mostrado. Finais de semana são 100% off-peak.",
-  "method.estimates.html": "<strong class=\"text-slate-200\">Estimativas (≈)</strong> — modelos antigos e fora das tabelas de req não têm número oficial; neles o req/mês é calculado como teto ÷ $/req. Os demais req/mês vêm direto da doc oficial.",
+  "method.blend.html":
+    '<strong class="text-slate-200">Custo por 1M (blend agêntico)</strong> — perfil típico documentado pelo Command Code: ~800 tokens de input novo, ~50.000 tokens de cache read e ~160 tokens de output por requisição. Como o harness roda com ~98% de cache hit, o custo real é dominado pelo preço de <em>cache read</em>, e não pelo input.',
+  "method.perReq.html":
+    '<strong class="text-slate-200">$/req</strong> — o mesmo perfil, em dólares: <span class="mono">(800·in + 50.000·cache + 160·out) ÷ 1.000.000</span>. É a unidade que importa: teto e janelas não estão em tokens, estão em dólares.',
+  "method.cred.html":
+    '<strong class="text-slate-200">Teto $</strong> — crédito mensal daquele modelo específico no GOAT, publicado na página do plano. Vai de $10 (Sonnet 5.5 e MiMo UltraSpeed) a $100 (DeepSeek V4.1 Flash, GLM-5.3 Flash, Ling 3.1 Flash). O padrão da casa continua $20.',
+  "method.window.html":
+    '<strong class="text-slate-200">Janelas 5 h / semana</strong> — 20% e 50% do teto mensal do modelo (a doc publica os três números e a proporção se confirma: $20 = 20% de $100, $50 = 50%). São <em>tetos rolantes, não taxas</em>: o semanal existe para impedir que o mês inteiro seja consumido em poucos dias, então multiplicar o semanal por 4 não resulta no mensal (no DeepSeek V4.1 Flash: 128.000 × 4 = 512.000, contra um teto mensal de 256.000). Por isso um modelo de teto $20 tem 5 h de <em>$4</em>, e não de $20.',
+  "method.value.html":
+    '<strong class="text-slate-200">Custo-benefício</strong> — índice = Intelligence ÷ custo/1M (blend). Mede "quanto de capacidade você compra por dólar" no uso real de agente.',
+  "method.balance.html":
+    '<strong class="text-slate-200">Equilíbrio (⭐ inteligente e barato)</strong> — exige <em>inteligência alta E preço baixo</em> ao mesmo tempo. Normaliza o IQ (escala linear, 15,4→57,6) e a barateza (escala log) e combina por <strong class="text-slate-200">média geométrica</strong>, gerando 0–100. O Contributor lidera (~88) mas não chega a 100: o IQ máximo agora é o Opus 5.5. Pelo ratio puro, o MiMo V2.6 Flash sobe a 3º só por ser barato; pelo equilíbrio cai para 6º. Zera no piso de IQ (Haiku 4.5) e no custo máximo (Fable 5 / GPT-6 Astra).',
+  "method.floor.html":
+    '<strong class="text-slate-200">Piso de inteligência</strong> — filtro que exige IQ ≥ X, para o ranking não ser dominado por modelos baratos porém fracos. Combine com "ordenar por requisições/mês" para achar <em>volume com capacidade</em>.',
+  "method.iq.html":
+    '<strong class="text-slate-200">Intelligence</strong> — índice composto do catálogo oficial, numa escala só. "not yet scored" = o modelo não entra nos rankings de custo-benefício nem de equilíbrio. Variantes Contributor e o Ling 3.1 Flash 1019 herdam a nota do base — o Contributor 1.3 vale IQ 48,1 (não 53,0 da tabela antiga de planos).',
+  "method.deepseek.html":
+    '<strong class="text-slate-200">DeepSeek</strong> — preço exibido é o <em>off-peak</em> (17 h/dia). Pico = 01:00–04:00 e 06:00–10:00 UTC, seg–sex, cerca de 2× o valor mostrado. Finais de semana são 100% off-peak.',
+  "method.estimates.html":
+    '<strong class="text-slate-200">Estimativas (≈)</strong> — modelos antigos e fora das tabelas de req não têm número oficial; neles o req/mês é calculado como teto ÷ $/req. Os demais req/mês vêm direto da doc oficial.',
 
   /* ---------- leitura rápida ---------- */
   "read.h2": "Leitura rápida da matriz",
-  "read.scales.html": "<strong class=\"text-slate-300\">As duas escalas de Intelligence não são a mesma coisa.</strong> A tabela de planos e a página de cada modelo publicam versões diferentes do mesmo índice (a página fica 5,6 pontos abaixo, em média). Consequência prática: o <strong class=\"text-slate-300\">DeepSeek V4.1 Flash</strong> aparece como \"not yet scored\" na tabela do plano, mas na escala da própria página faz <strong class=\"text-slate-300\">39,5 contra 35,0 do V4 Flash</strong> — é o modelo mais forte da família, não o mais fraco. É esse número que a coluna <span class=\"mono\">‡</span> traz para a matriz, já convertido.",
-  "read.flash.html": "O tier <em>flash</em> (DeepSeek V4 Flash, GLM-5.3 Flash, Qwen 3.7/3.8 Flash, MiMo, Tencent Hy3) domina custo-benefício: cache read entre $0,0028 e $0,035 por 1M, contra $0,20–$1,00 dos modelos de fronteira (Sonnet 5 até Fable 5 e GPT-6 Astra).",
-  "read.cache.html": "Cache read é o campo que mais pesa: 98% dos tokens de uma requisição típica. Os mais baratos são as variantes <strong class=\"text-slate-300\">Contributor</strong> do Muse Spark, a $0,002 por 1M — os MiMo vêm em seguida ($0,0028 e $0,0036), e não na frente. Pelo ratio puro IQ/US$ o MiMo V2.5 (IQ 28,2) ainda sobe para 5º, só por ser barato; pelo equilíbrio (⭐) cai para 10º. É a diferença entre \"barato\" e \"barato e inteligente\".",
-  "read.contributors.html": "As variantes <strong class=\"text-slate-300\">Contributor</strong> do Muse Spark (1.2 e 1.3) são o outlier de preço-performance: mesmo IQ 46,8 / 53,0 do modelo cheio, com input a $0,10 e cache read a $0,002 — cerca de 1/12 do preço, no mesmo teto de $20. São as duas primeiras do ranking e rendem ~91 mil requisições/mês.",
-  "read.volume.html": "A <strong class=\"text-slate-300\">inteligência máxima não é barata em volume</strong>: o Muse Spark 1.3 (IQ 53,0) e o Kimi K3 (IQ 50,2) rendem só 2.140 e 980 requisições/mês, com o mesmo teto de $20 do Contributor que rende 90.900. Mesmo teto, 42× e 93× menos autonomia.",
-  "read.ceiling70.html": "Teto $70 e preço baixo quase nunca vêm juntos: os quatro modelos de teto cheio (GPT-5.6 Sol, GLM-5.2, Tencent Hy3, Qwen 3.8 27B) rendem de 2.070 a 35.400 req/mês, e só o <strong class=\"text-slate-300\">Tencent Hy3</strong> fica abaixo de $0,002 por requisição ($0,00195, contra $0,0028, $0,0148 e $0,0338 dos outros três).",
-  "read.costVolume.html": "<strong class=\"text-slate-300\">Menor custo por requisição ≠ maior volume.</strong> Os dois se multiplicam: Muse Spark Contributor é o mais barato de rodar ($0,000212/req) mas com teto de $20 rende 90.900 req/mês; o DeepSeek V4 Flash custa 73% mais por requisição ($0,000366) e ainda assim rende 154.000, porque o teto dele é $60. Teto e preço andam juntos.",
-  "read.free.html": "Os 3 modelos grátis — Laguna S 2.1, LongCat 2.0 e Ling 3.0 Flash Sante — custam zero crédito. LongCat 2.0 e Ling 3.0 Flash Sante têm teto de 100 requisições/dia; só o LongCat 2.0 tem IQ publicado (25,8 — o mais baixo entre os grátis, embora a tabela tenha pagos ainda mais baixos, como o Haiku 4.5 em 17,4).",
-  "read.k3.html": "Kimi K3 ($3,00/$15,00) entrega 129 pontos de IQ por dólar: 42º de 52 no ratio, contra 12.740 do Contributor. O fundo da lista é de modelos fechados de teto alto (Qwen 3.7 Max, GPT-5.3 Codex, GPT-5.5 e GPT-5.6 Sol, todos entre 66 e 78) — nesse tier paga-se por teto de capacidade, não por eficiência.",
-  "read.goat.html": "No GOAT, DeepSeek V4 Flash entrega ~154 mil requisições/mês; GPT-5.6 Sol, ~2 mil. Mesmo plano, mesma assinatura: duas ordens de magnitude de diferença.",
+  "read.scales.html":
+    '<strong class="text-slate-300">A escala de Intelligence unificou.</strong> Catálogo e planos publicam o mesmo número. Consequência: o <strong class="text-slate-300">Muse Spark 1.3</strong> vale IQ 48,1 (não 53,0), o <strong class="text-slate-300">GLM-5.3 Flash</strong> vale 41,8 (não 46,2) e o topo absoluto é o <strong class="text-slate-300">Claude Opus 5.5</strong> (57,6), só no Max. Sonnet 5.5 (56,0) é o mais inteligente do GOAT.',
+  "read.flash.html":
+    "O trio <em>flash negociado</em> (DeepSeek V4.1 Flash, GLM-5.3 Flash, Ling 3.1 Flash) leva teto de $100 no GOAT. O V4.1 Flash entrega 256 mil req/mês — o maior volume da matriz. Cache read de flash continua na casa de $0,003–$0,03, contra $0,20–$1,00 de Opus/Fable/Astra.",
+  "read.cache.html":
+    'Cache read é o campo que mais pesa: 98% dos tokens de uma requisição típica. Os mais baratos seguem sendo as variantes <strong class="text-slate-300">Contributor</strong> do Muse Spark, a $0,002 por 1M — MiMo V2.6 Flash ($0,0028) e Pro ($0,0036) vêm na sequência. Pelo ratio puro o MiMo V2.6 Flash sobe a 3º; pelo equilíbrio (⭐) cai para 6º, atrás do Pro da mesma família. É a diferença entre "barato" e "barato e inteligente".',
+  "read.contributors.html":
+    'As variantes <strong class="text-slate-300">Contributor</strong> do Muse Spark (1.2 e 1.3) continuam o outlier de preço-performance: IQ 39,6 / 48,1 do modelo cheio, input a $0,10 e cache a $0,002 — cerca de 1/12 do preço, teto $20, ~91 mil req/mês. O 1.3 lidera o equilíbrio; o 1.2 fica em 3º, atrás do MiMo V2.6 Pro (sem deal).',
+  "read.volume.html":
+    'A <strong class="text-slate-300">inteligência máxima não é barata em volume</strong>: Sonnet 5.5 (IQ 56,0) no GOAT tem teto de só $10 — 1.190 req/mês. O Contributor 1.3, com o mesmo $20 de sempre, rende 90.900. Opus 5.5 (57,6) nem entra no GOAT.',
+  "read.ceiling70.html":
+    "Teto $100 agora existe, e veio junto com preço baixo: V4.1 Flash, GLM-5.3 Flash e Ling 3.1 Flash. Os $70 ficaram com GLM-5.2, Tencent Hy3 e Qwen 3.8 27B. GPT-5.6 Sol caiu para o padrão de $20 — deixou de ser teto cheio.",
+  "read.costVolume.html":
+    '<strong class="text-slate-300">Menor custo por requisição ≠ maior volume.</strong> O Contributor é o mais barato ($0,000212/req) com teto de $20 e rende 90.900 req/mês; o DeepSeek V4.1 Flash custa mais por requisição e ainda assim rende 256.000, porque o teto dele é $100. Teto e preço andam juntos.',
+  "read.free.html":
+    "Os 4 modelos grátis — Ling 3.1 Flash 1019, Beam 1.0, Glyph Cluster e Laguna S 2.1 — custam zero crédito. Ling 1019, Beam e Glyph têm 100 req/dia; Laguna é livre enquanto houver capacidade. Só o Ling 1019 tem IQ (41,1, herdado), e a promoção acaba em 3/nov/2026. LongCat 2.0 saiu do grátis: agora custa $0,30/$1,20 com teto de $50.",
+  "read.k3.html":
+    'No GOAT, o premium barato de verdade é o <strong class="text-slate-300">Haiku 5.5</strong>: IQ 43,4, $0,10/$0,50/$0,01, teto $20, 29.900 req/mês — na faixa do GLM-5.3 Flash, com selo Anthropic. Kimi K3 ($3,00/$15,00) continua caro por ponto. O fundo da lista é fechado de teto alto (Fable, Astra, Sol): nesse tier paga-se por capacidade, não por eficiência.',
+  "read.goat.html":
+    "No GOAT, DeepSeek V4.1 Flash entrega 256 mil requisições/mês; Claude Sonnet 5.5, 1.190; GPT-5.6 Sol, 592. Mesmo plano, mesma assinatura: duas a três ordens de magnitude de diferença.",
 
   /* ---------- rodapé ---------- */
-  "footer.data": "Dados de preço, contexto, plano mínimo, Intelligence, teto de créditos e estimativas de requisições extraídos da documentação oficial do Command Code (páginas de planos Go/GOAT/Pro/Max, Available Models e Pricing & Limits) em 14/set/2026.",
+  "footer.data":
+    "Dados de preço, contexto, plano mínimo, Intelligence, teto de créditos e estimativas de requisições extraídos da documentação oficial do Command Code (páginas de planos Go/GOAT/Pro/Max, Available Models e Pricing & Limits) em 31/out/2026.",
   "footer.links": "Páginas oficiais:",
   "footer.catalog": "Catálogo de modelos",
   "footer.note": "Preços e deals mudam; a página de uso do Studio sempre reflete o valor real cobrado por requisição.",
 
   /* ---------- painel de detalhe (htmx) ---------- */
   "detail.h2": "Detalhe do modelo",
-  "detail.placeholder": "Escolha um modelo na matriz (clique no nome) ou em uma recomendação para ver o perfil completo aqui.",
+  "detail.placeholder":
+    "Escolha um modelo na matriz (clique no nome) ou em uma recomendação para ver o perfil completo aqui.",
   "detail.loading": "Carregando…",
   "detail.close": "Fechar",
   "detail.costReq": "Custo por requisição",
   "detail.blend": "Custo por 1M (blend)",
   "detail.intelligence": "Intelligence",
-  "detail.intelligenceEst": "Intelligence (estimada ‡)",
   "detail.iqPerUsd": "IQ por dólar",
   "detail.balance": "Equilíbrio",
   "detail.ceiling": "Teto de crédito no GOAT",
@@ -290,7 +346,6 @@ export const pt = {
   "detail.source": "Ver na documentação oficial",
 
   /* ---------- geral ---------- */
-  "ui.estimateMark": "‡",
   "ui.approx": "≈ ",
-  "ui.na": "—",
+  "ui.na": "—"
 };

@@ -21,7 +21,9 @@ export function setLang(lang) {
   current = isLang(lang) ? lang : DEFAULT_LANG;
   try {
     if (typeof localStorage !== "undefined") localStorage.setItem(STORAGE_KEY, current);
-  } catch (e) { /* modo privado / sem storage: segue só em memória */ }
+  } catch (e) {
+    /* modo privado / sem storage: segue só em memória */
+  }
   return current;
 }
 
@@ -29,7 +31,9 @@ export function initLang() {
   let saved = null;
   try {
     if (typeof localStorage !== "undefined") saved = localStorage.getItem(STORAGE_KEY);
-  } catch (e) { /* idem */ }
+  } catch (e) {
+    /* idem */
+  }
   current = isLang(saved) ? saved : DEFAULT_LANG;
   return current;
 }
@@ -58,7 +62,8 @@ export function propsFor(dataset, lang = current) {
 export function applyTranslations(root, lang = current) {
   const scope = root || (typeof document !== "undefined" ? document : null);
   if (!scope) return;
-  scope.querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-title],[data-i18n-placeholder],[data-i18n-aria]")
+  scope
+    .querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-title],[data-i18n-placeholder],[data-i18n-aria]")
     .forEach(el => {
       const props = propsFor(el.dataset, lang);
       for (const [k, v] of Object.entries(props)) {
