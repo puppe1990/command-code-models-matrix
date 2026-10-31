@@ -33,10 +33,8 @@ export function modelPartial(m, lang) {
   // no idioma corrente do módulo e os dois idiomas sairiam iguais.
   const tr = (key, params) => t(key, params, lang);
   const r = reqMonth(m, "goat");
-  const iqTxt = m.iq != null
-    ? `${m.iq}`
-    : (m.iqEst != null ? `${tr("ui.approx")}${m.iqEst.toFixed(1)} ${tr("ui.estimateMark")}` : tr("table.noScore"));
-  const iqLabel = m.iq != null ? tr("detail.intelligence") : tr("detail.intelligenceEst");
+  const iqTxt = m.iq != null ? `${m.iq}` : tr("table.noScore");
+  const iqLabel = tr("detail.intelligence");
 
   const janelas = m.isFree
     ? `<p class="text-xs text-emerald-300">${tr("detail.freeQuota")}</p>`
@@ -67,7 +65,7 @@ export function modelPartial(m, lang) {
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
     ${celula(tr, tr("detail.costReq"), usdReq(m.costReq))}
     ${celula(tr, tr("detail.blend"), m.blend === 0 ? "$0" : usd(m.blend))}
-    ${celula(tr, iqLabel, iqTxt, m.aa != null && m.iq == null ? `AA ${m.aa}` : "")}
+    ${celula(tr, iqLabel, iqTxt)}
     ${celula(tr, tr("detail.iqPerUsd"), m.value != null ? int(m.value) : tr("ui.na"))}
     ${celula(tr, tr("detail.balance"), m.balance != null ? m.balance.toFixed(0) : tr("ui.na"))}
     ${celula(tr, tr("detail.ceiling"), teto)}

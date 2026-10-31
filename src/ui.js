@@ -61,20 +61,26 @@ function kpiCard(label, value, sub, accent) {
   </div>`;
 }
 
+function goatReqLabel(m) {
+  const r = reqMonth(m, "goat");
+  return r ? int(r.n) : tr("ui.na");
+}
+
 export function renderKPIs() {
   const p = PICKS;
   const byCache = NO_FREE.slice().sort((a, b) => a.cr - b.cr || (b.iq ?? -1) - (a.iq ?? -1));
   const nonDeal = NO_FREE.filter(m => !m.isDeal).sort((a, b) => a.cr - b.cr)[0];
-  const floor = Math.min(...CRED_TIERS);
-  const cheapTier = NO_FREE.filter(m => m.onGoat && m.cred === floor);
+  const standard = 20;
+  const cheapTier = NO_FREE.filter(m => m.onGoat && m.cred === standard);
   const vol = reqMonth(p.volume, "goat").n;
   const tie = byCache[1].cr === byCache[0].cr;
+  const planOf = m => PLAN_LABEL[m.min] || m.min;
 
   $("#kpiGrid").innerHTML =
     kpiCard(tr("kpi.balance.label"), p.best.n,
-      tr("kpi.balance.body.html", { balance: p.best.balance.toFixed(0), iq: p.best.iq, cost: usdReq(p.best.costReq), cred: p.best.cred, req: int(reqMonth(p.best, "goat").n) }), "text-emerald-400") +
+      tr("kpi.balance.body.html", { balance: p.best.balance.toFixed(0), iq: p.best.iq, cost: usdReq(p.best.costReq), cred: p.best.cred, req: goatReqLabel(p.best) }), "text-emerald-400") +
     kpiCard(tr("kpi.smartest.label"), p.smartest.n,
-      tr("kpi.smartest.body.html", { iq: p.smartest.iq, cost: usdReq(p.smartest.costReq), out: usd(p.smartest.out), cred: p.smartest.cred, req: int(reqMonth(p.smartest, "goat").n) }), "text-violet-400") +
+      tr("kpi.smartest.body.html", { iq: p.smartest.iq, cost: usdReq(p.smartest.costReq), out: usd(p.smartest.out), plan: planOf(p.smartest) }), "text-violet-400") +
     kpiCard(tr("kpi.volume.label"), p.volume.n,
       tr("kpi.volume.body.html", { req: int(vol), cred: p.volume.cred, cost: usdReq(p.volume.costReq), iq: p.volume.iq ?? tr("table.noScore"), cache: usd(p.volume.cr) }), "text-sky-400") +
     kpiCard(tr("kpi.cheapest.label"), p.cheapest.n,
@@ -85,16 +91,16 @@ export function renderKPIs() {
         tie: tie ? tr("kpi.cache.tie", { name: byCache[1].n }) : tr("kpi.cache.second", { cache: usd(byCache[1].cr), name: byCache[1].n }),
         nonDeal: usd(nonDeal.cr), nonDealName: nonDeal.n
       }), "text-teal-400") +
-    kpiCard(tr("kpi.tier.label"), tr("kpi.tier.value", { max: CRED_MAX, floor }),
+    kpiCard(tr("kpi.tier.label"), tr("kpi.tier.value", { max: CRED_MAX }),
       tr("kpi.tier.body.html", {
-        n: cheapTier.length, total: PAID_GOAT.length, floor, max: CRED_MAX,
-        n70: MODELS.filter(m => m.cred === CRED_MAX).length,
+        n: cheapTier.length, total: PAID_GOAT.length, max: CRED_MAX,
+        nMax: MODELS.filter(m => m.cred === CRED_MAX).length,
         names: MODELS.filter(m => m.cred === CRED_MAX).map(m => m.n).join(", ")
       }), "text-rose-400") +
     kpiCard(tr("kpi.noDeal.label"), p.noDeal.n,
       tr("kpi.noDeal.body.html", { balance: p.noDeal.balance.toFixed(0), iq: p.noDeal.iq, inp: usd(p.noDeal.inp), out: usd(p.noDeal.out), cache: usd(p.noDeal.cr), cred: p.noDeal.cred }), "text-lime-400") +
     kpiCard(tr("kpi.free.label"), p.free.n,
-      tr("kpi.free.body.html", { iq: p.free.iq, tps: p.free.tps, ctx: p.free.ctx }), "text-emerald-400");
+      tr("kpi.free.body.html", { iq: p.free.iq, ctx: p.free.ctx, base: "Ling 3.1 Flash" }), "text-emerald-400");
 }
 
 /* ============================ TETOS ============================ */
@@ -164,12 +170,12 @@ function pickCard(eyebrow, accent, m, why) {
 
 export function renderPicks() {
   const p = PICKS;
-  const cred70 = MODELS.filter(m => m.cred === CRED_MAX).sort((a, b) => (b.balance ?? -1) - (a.balance ?? -1));
+  const credMax = MODELS.filter(m => m.cred === CRED_MAX).sort((a, b) => (b.balance ?? -1) - (a.balance ?? -1));
   const tie = MODELS.filter(m => m.iq === p.smartest.iq && m !== p.smartest).sort((a, b) => a.costReq - b.costReq)[0];
   const smartWhy = tie
     ? tr("pick.smartest.why.html", {
       iq: p.smartest.iq, tieName: tie.n, cost: usdReq(p.smartest.costReq), tieCost: usdReq(tie.costReq),
-      cred: p.smartest.cred, req: int(reqMonth(p.smartest, "goat").n), tieReq: int(reqMonth(tie, "goat").n)
+      cred: p.smartest.cred ?? tr("ui.na"), req: goatReqLabel(p.smartest), tieReq: goatReqLabel(tie)
     })
     : tr("pick.smartest.alone", { iq: p.smartest.iq, cost: usdReq(p.smartest.costReq) });
 
@@ -182,13 +188,13 @@ export function renderPicks() {
     pickCard(tr("pick.fastest.label"), "amber", p.fastest,
       tr("pick.fastest.why.html", { tps: p.fastest.tps, iq: p.fastest.iq, cost: usdReq(p.fastest.costReq), cred: p.fastest.cred })) +
     pickCard(tr("pick.noDeal.label"), "lime", p.noDeal,
-      tr("pick.noDeal.why.html", { inp: usd(p.noDeal.inp), out: usd(p.noDeal.out), cache: usd(p.noDeal.cr), balance: p.noDeal.balance.toFixed(0) })) +
+      tr("pick.noDeal.why.html", { inp: usd(p.noDeal.inp), out: usd(p.noDeal.out), cache: usd(p.noDeal.cr), balance: p.noDeal.balance.toFixed(0), cred: p.noDeal.cred })) +
     pickCard(tr("pick.bigBudget.label"), "cyan", p.bigBudget,
-      tr("pick.bigBudget.why.html", { n: cred70.length, max: CRED_MAX, names: cred70.map(m => m.n).join(", "), cost: usdReq(p.bigBudget.costReq) })) +
+      tr("pick.bigBudget.why.html", { n: credMax.length, max: CRED_MAX, names: credMax.map(m => m.n).join(", "), cost: usdReq(p.bigBudget.costReq) })) +
     pickCard(tr("pick.premium.label"), "rose", p.premium,
       tr("pick.premium.why.html", { iq: p.premium.iq, cost: usdReq(p.premium.costReq) })) +
     pickCard(tr("pick.free.label"), "emerald", p.free,
-      tr("pick.free.why.html", { iq: p.free.iq, tps: p.free.tps, ctx: p.free.ctx }));
+      tr("pick.free.why.html", { iq: p.free.iq, ctx: p.free.ctx, base: "Ling 3.1 Flash" }));
 }
 
 /* ============================ PODIUM + RANKING ============================ */
@@ -278,7 +284,7 @@ export function render() {
     if (cat === "reasoning" && !m.tags.includes("reasoning")) return false;
     if (vendor !== "all" && m.v !== vendor) return false;
     if (onlyPlan && m.planRank > planRank) return false;
-    if (minIq > 0 && !(m.iqEst != null && m.iqEst >= minIq)) return false;
+    if (minIq > 0 && !(m.iq != null && m.iq >= minIq)) return false;
     if (q && !(m.n + " " + m.v + " " + m.id).toLowerCase().includes(q)) return false;
     return true;
   });
@@ -289,7 +295,7 @@ export function render() {
   const cmp = {
     balance: (a, b) => (b.balance ?? -1) - (a.balance ?? -1),
     value: (a, b) => val(b) - val(a) || (b.iq ?? -1) - (a.iq ?? -1),
-    iq: (a, b) => (b.iqEst ?? -1) - (a.iqEst ?? -1),
+    iq: (a, b) => (b.iq ?? -1) - (a.iq ?? -1),
     tps: (a, b) => (b.tps ?? -1) - (a.tps ?? -1),
     cred: (a, b) => (b.cred ?? -1) - (a.cred ?? -1) || (b.balance ?? -1) - (a.balance ?? -1),
     req: (a, b) => reqNum(b) - reqNum(a),
@@ -352,7 +358,6 @@ export function render() {
       <td class="px-3 py-2.5 text-right mono text-xs whitespace-nowrap ${isFree ? "text-emerald-400" : "text-slate-300"}">${isFree ? "$0" : usd(m.blend)}</td>
       <td class="px-3 py-2.5 text-right text-xs font-semibold">
         ${m.iq != null ? `<span class="text-violet-300">${m.iq}</span>`
-          : m.iqEst != null ? `<span class="text-slate-300">${tr("ui.approx")}${m.iqEst.toFixed(1)}${tr("ui.estimateMark")}</span><div class="text-[9px] text-slate-500 whitespace-nowrap">AA ${m.aa}</div>`
           : `<span class="text-slate-600">${tr("table.noScore")}</span>`}
       </td>
       <td class="px-3 py-2.5 text-right text-xs font-bold ${m.value == null ? "text-slate-600" : "text-emerald-400"} whitespace-nowrap">
@@ -375,12 +380,13 @@ export function render() {
 
 /* ============================ GRÁTIS ============================ */
 const FREE_RIVALS = [
-  { id: "meta/muse-spark-1.3", aa: 48.2, coding: 75.8 },
-  { id: "google/gemini-3.5-flash-lite", aa: 22.7, coding: 49.3 },
-  { id: "xiaomi/mimo-v2.5", aa: 22.3, coding: 56.8 },
-  { id: "meituan/LongCat-2.0:free", aa: 19.7, coding: 45.3, self: true },
-  { id: "stepfun/Step-3.7-Flash", aa: 19.5, coding: 39.6 },
-  { id: "stepfun/Step-3.5-Flash", aa: 17.0, coding: null }
+  { id: "inclusionai/ling-3.1-flash-1019:free", self: true },
+  { id: "inclusionai/ling-3.1-flash" },
+  { id: "z-ai/glm-5.3-flash" },
+  { id: "minimax/minimax-m3.1-flash" },
+  { id: "google/gemini-3.8-flash" },
+  { id: "deepseek/deepseek-v4.1-flash" },
+  { id: "claude-haiku-5-5" }
 ];
 const FREE_REQ_MONTH = 3000;
 
@@ -389,6 +395,7 @@ export function renderFree() {
   $("#freeRivals").innerHTML = FREE_RIVALS.map(r => {
     const m = byId(r.id);
     const teto = m.isFree ? tr("free.noCeiling") : (m.cred ? tr("free.ceiling", { value: m.cred }) : `${PLAN_LABEL[m.min]}+`);
+    const iq = m.iq != null ? m.iq.toFixed(1) : tr("ui.na");
     return `
     <tr class="${r.self ? "bg-emerald-500/10" : "row-hover"}">
       <td class="px-3 py-2.5">
@@ -396,36 +403,43 @@ export function renderFree() {
         ${r.self ? `<span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 ml-1 whitespace-nowrap">${tr("free.badge")}</span>` : ""}
         <div class="text-[10px] text-slate-500">${m.v} · ${m.ctx} · ${teto}</div>
       </td>
-      <td class="px-3 py-2.5 text-right text-xs font-semibold ${r.self ? "text-emerald-300" : "text-slate-300"}">${r.aa.toFixed(1)}</td>
-      <td class="px-3 py-2.5 text-right text-xs ${r.self ? "text-emerald-300/90" : "text-slate-400"}">${r.coding ?? tr("ui.na")}</td>
+      <td class="px-3 py-2.5 text-right text-xs font-semibold ${r.self ? "text-emerald-300" : "text-slate-300"}">${iq}</td>
       <td class="px-3 py-2.5 text-right mono text-xs ${m.isFree ? "text-emerald-400" : "text-sky-300"}">${m.isFree ? "$0" : usdReq(m.costReq)}</td>
       <td class="px-3 py-2.5 text-right mono text-xs ${m.isFree ? "font-bold text-emerald-400" : "text-slate-300"}">${m.isFree ? "$0" : usd(m.costReq * FREE_REQ_MONTH)}</td>
     </tr>`;
   }).join("");
 
-  const rv = id => FREE_RIVALS.find(r => r.id === id);
-  const lc = rv("meituan/LongCat-2.0:free"), st = rv("stepfun/Step-3.7-Flash"), mi = rv("xiaomi/mimo-v2.5");
-  const stCost = byId(st.id).costReq * FREE_REQ_MONTH, miCost = byId(mi.id).costReq * FREE_REQ_MONTH;
+  const paid = byId("inclusionai/ling-3.1-flash");
+  const glm = byId("z-ai/glm-5.3-flash");
+  const m31 = byId("minimax/minimax-m3.1-flash");
+  const haiku = byId("claude-haiku-5-5");
+  const cost = m => usd(m.costReq * FREE_REQ_MONTH);
   $("#freeRivalsNote").innerHTML = tr("free.note.html", {
-    stepIq: st.aa.toFixed(1), longIq: lc.aa.toFixed(1),
-    longCoding: lc.coding, stepCoding: st.coding,
-    stepCost: usd(stCost), mimoIq: mi.aa.toFixed(1), mimoCoding: mi.coding, mimoCost: usd(miCost)
+    lingIq: paid.iq.toFixed(1),
+    paidCost: cost(paid),
+    glmIq: glm.iq.toFixed(1), glmCost: cost(glm), glmCred: glm.cred,
+    m31Iq: m31.iq.toFixed(1), m31Cost: cost(m31),
+    haikuIq: haiku.iq.toFixed(1), haikuCost: cost(haiku)
   });
 
-  $("#freeValue").innerHTML = tr("free.value.body.html", { cheap: usd(miCost), dear: usd(stCost) });
+  const neighbors = [paid, glm, m31, haiku].map(m => m.costReq * FREE_REQ_MONTH);
+  $("#freeValue").innerHTML = tr("free.value.body.html", {
+    cheap: usd(Math.min(...neighbors)),
+    dear: usd(Math.max(...neighbors))
+  });
   $("#freeNoScore").innerHTML = tr("free.noscore.body.html");
 }
 
 /* ============================ CSV ============================ */
 export function exportCsv() {
-  const head = ["id", "modelo", "vendor", "contexto", "teto_goat_usd", "in_por_1M", "out_por_1M", "cache_read_por_1M", "cache_write_por_1M", "custo_por_requisicao_usd", "custo_blend_por_1M", "intelligence", "aa_v43", "intelligence_estimada", "iq_por_dolar", "equilibrio_inteligente_barato", "tokens_s", "plano_minimo", "req_mes_goat", "req_5h_goat", "req_semana_goat", "req_mes_pro", "req_mes_max10", "flags"];
+  const head = ["id", "modelo", "vendor", "contexto", "teto_goat_usd", "in_por_1M", "out_por_1M", "cache_read_por_1M", "cache_write_por_1M", "custo_por_requisicao_usd", "custo_blend_por_1M", "intelligence", "iq_por_dolar", "equilibrio_inteligente_barato", "tokens_s", "plano_minimo", "req_mes_goat", "req_5h_goat", "req_semana_goat", "req_mes_pro", "req_mes_max10", "flags"];
   const lines = [head.join(",")];
   MODELS.forEach(m => {
     const g = reqMonth(m, "goat");
     lines.push([
       m.id, `"${m.n}"`, m.v, m.ctx, m.cred ?? "", m.inp, m.out, m.cr, m.cw ?? "",
       m.costReq.toFixed(6), m.blend.toFixed(6),
-      m.iq ?? "", m.aa ?? "", m.iq == null && m.iqEst != null ? m.iqEst.toFixed(1) : "",
+      m.iq ?? "",
       m.value ? Math.round(m.value) : "", m.balance != null ? m.balance.toFixed(1) : "", m.tps ?? "", m.min,
       g ? (g.est ? "~" : "") + Math.round(g.n) : "", g ? Math.round(g.n * WINDOW.h5) : "", g ? Math.round(g.n * WINDOW.week) : "",
       m.req.pro ?? "", m.req.max ?? "", m.tags.join("|")

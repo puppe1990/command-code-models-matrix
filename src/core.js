@@ -12,24 +12,20 @@ export const PROFILE = { input: 800, cache: 50000, output: 160 };
 export const TOKENS_PER_REQ = PROFILE.input + PROFILE.cache + PROFILE.output; // 50.960
 
 /* As janelas são frações do teto mensal do próprio modelo. A doc publica os
-   três números e a proporção se confirma em todos (ex.: $14 = 20% de $70). */
+   três números e a proporção se confirma em todos (ex.: $20 = 20% de $100). */
 export const WINDOW = { h5: 0.20, week: 0.50 };
 
-/* A tabela do plano e o catálogo publicam versões diferentes do mesmo índice
-   (AA v4.2 vs v4.3). Nos 53 modelos presentes nas duas, o catálogo fica 5,6
-   pontos abaixo em média (desvio 1,4; faixa 2,0–8,1) — é esse o offset usado
-   para estimar quem a tabela do plano não pontua.                          */
-export const AA_OFFSET = 5.6;
-
+/* Intelligence é a escala unificada do catálogo (31/out/2026). Variantes
+   Contributor e o Ling 3.1 Flash 1019 herdam o IQ do modelo-base no dataset. */
 export const PREMIUM_VENDORS = ["Anthropic", "OpenAI", "Google", "Sakana", "Meta", "xAI"];
 export const PLAN_RANK = { go: 0, goat: 1, pro: 2, max: 3, max10: 3, max20: 3 };
 
 export const PLANS = [
-  { key: "go", name: "Go", price: 1, credits: 10, reqKey: null, models: "Open-source + alguns premium", limits: "$3 / 5h · $6 / semanal", note: "Entrada global. Sem acesso à API." },
-  { key: "goat", name: "GOAT", price: 10, credits: 70, reqKey: "goat", models: "30+ open + alguns closed", limits: "$14 / 5h · $35 / semanal", note: "7× de multiplicador — o melhor valor do mercado." },
-  { key: "pro", name: "Pro", price: 20, credits: 80, reqKey: "pro", models: "45+ open + Claude/GPT/Gemini", limits: "$16 / 5h · $40 / semanal", note: "Premium com até $20 de teto por modelo." },
-  { key: "max10", name: "Max 10×", price: 100, credits: 150, reqKey: "max", models: "Todos (Opus, Fable, Fugu)", limits: "$45 / 5h · $90 / semanal", note: "$150 standard + $100 premium." },
-  { key: "max20", name: "Max 20×", price: 200, credits: 300, reqKey: "max", models: "Todos (Opus, Fable, Fugu)", limits: "$90 / 5h · $180 / semanal", note: "$300 standard + $200 premium." },
+  { key: "go", name: "Go", price: 1, credits: 10, reqKey: null, models: "Open-source + alguns premium", limits: "$2 / 5h · $5 / semanal", note: "Entrada global. Sem acesso à API." },
+  { key: "goat", name: "GOAT", price: 10, credits: 100, reqKey: "goat", models: "open + Haiku 5.5, Sonnet 5.5, GPT-6 Luna, Grok", limits: "$20 / 5h · $50 / semanal", note: "10× de multiplicador — teto por modelo até $100." },
+  { key: "pro", name: "Pro", price: 20, credits: 110, reqKey: "pro", models: "GOAT + Claude/GPT/Gemini 4 Argon", limits: "$22 / 5h · $55 / semanal", note: "Premium com teto até $110 nos flashes negociados." },
+  { key: "max10", name: "Max 10×", price: 100, credits: 150, reqKey: "max", models: "Todos (Opus, Fable, Fugu, Wonder, Astra)", limits: "$45 / 5h · $90 / semanal", note: "$150 standard + $100 premium." },
+  { key: "max20", name: "Max 20×", price: 200, credits: 300, reqKey: "max", models: "Todos (Opus, Fable, Fugu, Wonder, Astra)", limits: "$90 / 5h · $180 / semanal", note: "$300 standard + $200 premium." },
   { key: "provider", name: "Provider", price: 15, credits: null, reqKey: null, models: "Todos via API (pay-as-you-go)", limits: "sem limite (pré-pago)", note: "API OpenAI/Anthropic-compatível, ao custo do modelo." }
 ];
 
@@ -69,8 +65,7 @@ MODELS.forEach(m => {
     m.blend = m.costReq / TOKENS_PER_REQ * 1e6;
     m.value = (m.iq != null && m.blend > 0) ? m.iq / m.blend : null;
   }
-  // estimativa só para quem não tem nota oficial
-  m.iqEst = m.iq ?? (m.aa != null ? +(m.aa + AA_OFFSET).toFixed(1) : null);
+  m.iqEst = m.iq;
 });
 
 /* req/mês por plano: número oficial quando existe, senão teto ÷ custo por requisição */
