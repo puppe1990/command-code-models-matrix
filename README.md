@@ -2,7 +2,8 @@
 
 A single-page comparison of every model and plan on [Command Code](https://commandcode.ai): price per 1M tokens, the real cost of an agent request, per-model credit ceilings, usage windows and value indexes.
 
-**Live:** https://matriz-modelos-command-code.netlify.app
+**Live:** https://command-code-models-matrix.sites.gestaobem.com  
+**Repo:** https://github.com/puppe1990/command-code-models-matrix
 
 The page is available in **Portuguese and English** (toggle in the header), ships a dark theme by default with a light mode, and has no runtime dependencies beyond the Tailwind CDN and htmx.
 
@@ -80,6 +81,10 @@ Prices and deals change often; the Studio usage page always reflects what is act
 
 ## Deploy
 
+Static drop on Cleat (`index.html` + `src/` + generated `partials/`):
+
 ```bash
-npm run build && netlify deploy --prod --dir=.
+npm run build
 ```
+
+Live: https://command-code-models-matrix.sites.gestaobem.com
